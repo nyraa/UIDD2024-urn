@@ -2,6 +2,7 @@ html
 {
     overflow: hidden;
 }
+
 body
 {
     margin: 0;
@@ -292,4 +293,52 @@ nav a
     transform: translate(-50%);
     bottom: -13%;
     width: 0.5%;
+}
+
+/* page 2 */
+.main-face-2
+{
+    background-color: #1F2C44;
+}
+
+.services-content
+{
+    height: 60%;
+    max-height: 600px;
+    display: flex;
+    padding: 0 10%;
+    margin-top: 15%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.service-box
+{
+    height: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    --service-box-margin: 10px;
+    margin: var(--service-box-margin);
+}
+
+.text-box
+{
+    width: calc(20% - var(--service-box-margin) * 2);
+    font-family: "Zen Antique Soft";
+    font-size: 40px;
+    color: #A78E87;
+}
+
+.image-box
+{
+    width: calc(40% - var(--service-box-margin) * 2);
+    font-family: "Zen Old Mincho";
+    font-size: 27px;
+    color: #F5F5F5;
+    background-image: var(--img-src);
+    background-size: cover;
+    background-position: top center;
+    border-radius: 37px;
 }
