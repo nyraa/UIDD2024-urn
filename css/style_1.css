@@ -1,0 +1,282 @@
+body
+{
+    margin: 0;
+}
+
+@keyframes title2
+{
+    0%
+    {
+        opacity: 0;
+    }
+
+    100%
+    {
+        opacity: 1.0;
+    }
+}
+
+.page1-title
+{
+    font-family: "Zen Antique Soft";
+    font-size: 40px;
+    position: absolute;
+    left: 10vw;
+    top: 3vw;
+    z-index: 10;
+    animation-name: title2;
+    animation-duration: 5s;
+    display: flex;
+    align-items: center;
+    color: #A78E87;
+    user-select: none;
+}
+
+.page1-title::before
+{
+    content: "";
+    height: 54px;
+    width: 54px;
+    background-size: cover;
+    display: inline-block;
+    background-image: url("../picture/logo.png");
+    margin-top: 7px;
+    margin-right: 33px;
+}
+
+@keyframes conteiner
+{
+    0%
+    {
+        opacity: 0;
+    }
+
+    100%
+    {
+        opacity: 1.0;
+    }
+}
+
+nav
+{
+    top: 3vw;
+    right: 8vw;
+    position: fixed;
+    z-index: 10;
+    animation-name: conteiner;
+    animation-duration: 2.5s;
+}
+
+nav a
+{
+    font-family: "Zen Old Mincho";
+    margin-left: 7vw;
+    font-size: 27px;
+    color: #A78E87;
+    text-decoration: none;
+    text-align: right;
+}
+
+.main-face-1
+{
+    height: 100vh;
+    max-width: 100%;
+    width: 100vw;
+    background-image: url("../picture/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes title1
+{
+    0%
+    {
+        opacity: 0;
+        top: 40%;
+    }
+
+    100%
+    {
+        opacity: 1.0;
+        top: 20%;
+    }
+}
+
+.slogan
+{
+    position: absolute;
+    font-family: "Zen Antique Soft";
+    font-size: 128px;
+    color: #195266;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    right: 10%;
+    top: 20%;
+    animation-name: title1;
+    animation-duration: 4s;
+    text-align: right;
+    user-select: none;
+}
+
+.animation-image
+{
+    user-select: none;
+    pointer-events: none;
+}
+
+/* clouds */
+@keyframes cloud2
+{
+    from
+    {
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+    to
+    {
+        margin-top: -60%;
+        margin-left: -60%;
+    }
+}
+
+.cloud-2
+{
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    height: 160vh;
+    margin-top: -60%;
+    margin-left: -60%;
+    width: 180vw;
+    /*150*/
+    animation-name: cloud2;
+    animation-duration: 3s;
+}
+
+@keyframes cloud3
+{
+    from
+    {
+        margin-bottom: -30%;
+    }
+
+    to
+    {
+        margin-bottom: -15%;
+    }
+}
+
+.cloud-3
+{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -15%;
+    width: 150vw;
+    /*300*/
+    z-index: 2;
+    animation-name: cloud3;
+    animation-duration: 3s;
+}
+
+@keyframes cloud4
+{
+    from
+    {
+        width: 900vw;
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+
+    to
+    {
+        width: 300vw;
+        margin-top: -60%;
+        margin-left: -60%;
+    }
+}
+
+.cloud-4
+{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: auto;
+    top: 0;
+    width: 300vw;
+    margin-top: -60%;
+    margin-left: -60%;
+    z-index: 2;
+    animation-name: cloud4;
+    animation-duration: 3s;
+}
+
+/* hand */
+@keyframes hand
+{
+    0%
+    {
+        opacity: 0.8;
+        top: 55%;
+    }
+
+    100%
+    {
+        opacity: 1.0;
+        top: 60%;
+    }
+}
+
+.hand
+{
+    position: absolute;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 60%;
+    animation-name: hand;
+    animation-duration: 2s;
+}
+
+@keyframes roll
+{
+    0%
+    {
+        bottom: -10%;
+    }
+
+    100%
+    {
+        bottom: 20%;
+    }
+}
+
+.roll
+{
+    font-family: "Zen Old Mincho";
+    font-size: 30px;
+    /* original font size: 36 */
+    letter-spacing: 6px;
+    color: #F4F0E3;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 20%;
+    animation-name: roll;
+    animation-duration: 5s;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    user-select: none;
+}
+
+.vector
+{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -13%;
+    width: 0.5%;
+}
