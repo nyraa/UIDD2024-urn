@@ -9,7 +9,7 @@ body
     overflow-y: scroll;
     height: 100vh;
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
 }
 
 @keyframes title2
@@ -361,14 +361,22 @@ nav a
 
 .text-box:first-child
 {
-    animation-name: text-left;
     left: 0;
+}
+
+.text-box:first-child.animated
+{
+    animation-name: text-left;
 }
 
 .text-box:last-child
 {
-    animation-name: text-right;
     right: 0;
+}
+
+.text-box:last-child.animated
+{
+    animation-name: text-right;
 }
 
 .image-box
@@ -384,27 +392,18 @@ nav a
 }
 
 /* page 3 */
-@keyframes background-in
-{
-    from
-    {
-        background-position: -100px bottom, top;
-    }
-
-    to
-    {
-        background-position: 0 bottom, top;
-    }
-}
 
 .main-face-3
 {
     background-color: #F4F0E3;
-    background-image: url("../picture/background_3.png"), url("../picture/background_3_top.png");
-    background-position: 0 bottom, top;
+    background-image: url("../picture/background_3_top.png");
+    background-position: top;
     background-repeat: no-repeat;
-    background-size: calc(100% + 100px) auto, 100% auto;
-    /* extra 100px for animation */
+    background-size: 100% auto;
+}
+
+.main-face-3.animated
+{
     animation: background-in 2s;
 }
 
@@ -420,6 +419,33 @@ nav a
     z-index: 10;
     position: absolute;
     bottom: -30px;
+}
+
+@keyframes background-in
+{
+    from
+    {
+        left: -100px;
+    }
+
+    to
+    {
+        left: 0;
+    }
+}
+
+.wave-background
+{
+    width: calc(100% + 100px);
+    /* extra 100px for animation */
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.wave-background.animated
+{
+    animation: background-in 2s;
 }
 
 @keyframes team-up
@@ -442,8 +468,11 @@ nav a
     position: absolute;
     bottom: 210px;
     right: 8vw;
-    animation-name: team-up;
-    animation-duration: 2s;
+}
+
+.team-image.animated
+{
+    animation: team-up 2s;
 }
 
 @keyframes cloud5
@@ -467,6 +496,10 @@ nav a
     position: absolute;
     bottom: -16vw;
     left: -50vw;
+}
+
+.cloud-5.animated
+{
     animation: cloud5 2s;
 }
 
