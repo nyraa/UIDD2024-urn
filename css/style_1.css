@@ -322,6 +322,28 @@ nav a
     --service-box-margin: 10px;
     margin: var(--service-box-margin);
 }
+@keyframes text-left
+{
+    from
+    {
+        left: calc(-1 * (10% + 20% + var(--service-box-margin)));
+    }
+    to
+    {
+        left: 0;
+    }
+}
+@keyframes text-right
+{
+    from
+    {
+        right: calc(-1 * (10% + 20% + var(--service-box-margin)));
+    }
+    to
+    {
+        right: 0;
+    }
+}
 
 .text-box
 {
@@ -329,6 +351,18 @@ nav a
     font-family: "Zen Antique Soft";
     font-size: 40px;
     color: #A78E87;
+    animation-duration: 3s;
+    position: relative;
+}
+.text-box:first-child
+{
+    animation-name: text-left;
+    left: 0;
+}
+.text-box:last-child
+{
+    animation-name: text-right;
+    right: 0;
 }
 
 .image-box
