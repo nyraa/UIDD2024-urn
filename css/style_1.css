@@ -1,6 +1,14 @@
+html
+{
+    overflow: hidden;
+}
 body
 {
     margin: 0;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 @keyframes title2
@@ -77,18 +85,23 @@ nav a
     text-align: right;
 }
 
-.main-face-1
+.page-section
 {
     height: 100vh;
     max-width: 100%;
     width: 100vw;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+.main-face-1
+{
     background-image: url("../picture/background.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: scroll;
-    position: relative;
-    overflow: hidden;
 }
 
 @keyframes title1
