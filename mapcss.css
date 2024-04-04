@@ -1,0 +1,77 @@
+body {
+    font-family: "GenRyuMin TW", Arial, sans-serif;
+    background-image: url('image/map.png');
+    background-size: 100% auto; 
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: ""; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15vw;
+    padding-right: 8vw;
+}
+
+.content {
+    color: white;
+    padding: 5vw;
+    border-radius: 2vw; 
+    text-align: center;
+    z-index: 1000;
+}
+
+.back {
+    height: auto; 
+    width: 42.25px;
+    position: absolute;
+    top: 62.05px; 
+    left: 104.55px; 
+}
+
+h1 {
+    font-size: 3.6vw; 
+    margin-bottom: 1vw; 
+}
+
+h2 {
+    font-size: 3.6vw; 
+    padding-bottom: 8vw;
+}
+
+input{
+    background-color: transparent;
+    border: none ; 
+    position: absolute;
+    cursor: pointer;
+    text-decoration: underline white;
+    width: 25vw;
+}
+#username{
+    font-size: 3.6vw; 
+    color: white;
+}
+#country{
+    font-size: 3.6vw; 
+    color: white;
+}
+#username::placeholder {
+    color: white; 
+}
+.answer{
+    text-decoration: underline;
+    padding-left: 15vw;
+    font-size: 2vw; 
+
+    color: white;
+}
