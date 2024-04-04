@@ -322,23 +322,27 @@ nav a
     --service-box-margin: 10px;
     margin: var(--service-box-margin);
 }
+
 @keyframes text-left
 {
     from
     {
         left: calc(-1 * (10% + 20% + var(--service-box-margin)));
     }
+
     to
     {
         left: 0;
     }
 }
+
 @keyframes text-right
 {
     from
     {
         right: calc(-1 * (10% + 20% + var(--service-box-margin)));
     }
+
     to
     {
         right: 0;
@@ -354,11 +358,13 @@ nav a
     animation-duration: 3s;
     position: relative;
 }
+
 .text-box:first-child
 {
     animation-name: text-left;
     left: 0;
 }
+
 .text-box:last-child
 {
     animation-name: text-right;
@@ -375,4 +381,105 @@ nav a
     background-size: cover;
     background-position: top center;
     border-radius: 37px;
+}
+
+/* page 3 */
+@keyframes background-in
+{
+    from
+    {
+        background-position: -100px bottom, top;
+    }
+
+    to
+    {
+        background-position: 0 bottom, top;
+    }
+}
+
+.main-face-3
+{
+    background-color: #F4F0E3;
+    background-image: url("../picture/background_3.png"), url("../picture/background_3_top.png");
+    background-position: 0 bottom, top;
+    background-repeat: no-repeat;
+    background-size: calc(100% + 100px) auto, 100% auto;
+    /* extra 100px for animation */
+    animation: background-in 2s;
+}
+
+.page3-title
+{
+    top: 259px;
+}
+
+.wave-bottom
+{
+    height: auto;
+    width: 100vw;
+    z-index: 10;
+    position: absolute;
+    bottom: -30px;
+}
+
+@keyframes team-up
+{
+    from
+    {
+        bottom: 0;
+    }
+
+    to
+    {
+        bottom: 210px;
+    }
+}
+
+.team-image
+{
+    width: 60vw;
+    z-index: 3;
+    position: absolute;
+    bottom: 210px;
+    right: 8vw;
+    animation-name: team-up;
+    animation-duration: 2s;
+}
+
+@keyframes cloud5
+{
+    from
+    {
+        left: 0;
+    }
+
+    to
+    {
+        left: -50vw;
+    }
+}
+
+.cloud-5
+{
+    z-index: 100;
+    height: 60vw;
+    width: 200vw;
+    position: absolute;
+    bottom: -16vw;
+    left: -50vw;
+    animation: cloud5 2s;
+}
+
+.service-description
+{
+    font-family: "Zen Old Mincho";
+    font-weight: lighter;
+    font-size: 27px;
+    line-height: 45px;
+    color: #F4F0E3;
+    position: absolute;
+    bottom: 3vw;
+    right: 8vw;
+    width: 55vw;
+    z-index: 15;
 }
