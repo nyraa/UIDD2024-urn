@@ -457,7 +457,7 @@ nav a
 
     to
     {
-        bottom: 210px;
+        bottom: calc(100vw * 0.14);
     }
 }
 
@@ -466,7 +466,7 @@ nav a
     width: 60vw;
     z-index: 3;
     position: absolute;
-    bottom: 210px;
+    bottom: calc(100vw * 0.14);
     right: 8vw;
 }
 
