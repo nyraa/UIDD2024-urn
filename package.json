@@ -1,0 +1,22 @@
+{
+  "name": "uidd2024-urn",
+  "version": "1.0.0",
+  "description": "urn",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "npx node-sass sass/style.sass -o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyraa/UIDD2024-urn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyraa/UIDD2024-urn/issues"
+  },
+  "homepage": "https://github.com/nyraa/UIDD2024-urn#readme",
+  "dependencies": {
+    "node-sass": "^9.0.0"
+  }
+}
