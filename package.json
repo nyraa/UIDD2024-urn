@@ -1,22 +1,22 @@
 {
-  "name": "uidd2024-urn",
-  "version": "1.0.0",
-  "description": "urn",
+  "name": "urn",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "npx node-sass sass/style.sass -o css"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nyraa/UIDD2024-urn.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nyraa/UIDD2024-urn/issues"
-  },
-  "homepage": "https://github.com/nyraa/UIDD2024-urn#readme",
   "dependencies": {
-    "node-sass": "^9.0.0"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.3"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3"
   }
 }
