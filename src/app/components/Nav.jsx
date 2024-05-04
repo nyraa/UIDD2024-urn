@@ -1,4 +1,4 @@
-import { func } from "prop-types"
+import "@app/components/Nav.sass";
 
 export default function Nav() {
     return (
