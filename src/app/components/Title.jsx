@@ -1,8 +1,8 @@
 import "@app/components/Title.sass";
 
-export default function Title({ children }) {
+export default function Title({ position, children }) {
     return (
-        <div className="section-title">
+        <div className={`logo-title ${position}`}>
             {children}
         </div>
     )

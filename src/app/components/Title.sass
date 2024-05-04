@@ -1,9 +1,6 @@
-.section-title
+.logo-title
     font-family: "Zen Antique Soft"
     font-size: 40px
-    position: absolute
-    left: 10vw
-    top: 3vw
     z-index: 10
     animation-name: title2
     animation-duration: 5s
@@ -11,6 +8,12 @@
     align-items: center
     color: #A78E87
     user-select: none
+
+    &.float
+        position: absolute
+        left: 10vw
+        top: 4vw
+        transform: translateY(-50%)
 
     &::before
         content: ""
