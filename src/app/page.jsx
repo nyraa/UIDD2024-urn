@@ -4,7 +4,7 @@ import HomeBanner from "@app/components/HomeBanner";
 import SearchBox from "@app/components/SearchBox";
 import Splitter from "@app/components/Splitter";
 
-import "@app/homepage.sass";
+import "./homepage.sass";
 
 export default function Home() {
     return (
