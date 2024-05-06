@@ -2,6 +2,7 @@ import Image from "next/image";
 import Nav from "@app/components/Nav";
 import HomeBanner from "@app/components/HomeBanner";
 import SearchBox from "@app/components/SearchBox";
+import Splitter from "@app/components/Splitter";
 
 import "@app/homepage.sass";
 
@@ -11,6 +12,8 @@ export default function Home() {
             <Nav title={true} />
             <HomeBanner />
             <FindYourLove />
+            <Splitter>以不同類別探索靈骨塔</Splitter>
+            <Splitter>今日逝世紀念</Splitter>
         </>
     );
 }
