@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Nav from "@app/components/Nav";
 import HomeBanner from "@app/components/HomeBanner";
+import SearchBox from "@app/components/SearchBox";
 
 import "@app/homepage.sass";
 
@@ -22,6 +23,7 @@ function FindYourLove() {
             <div className="description">
                 搜尋全球首創AI互動線上靈塔
             </div>
+            <SearchBox />
         </section>
     )
 }
