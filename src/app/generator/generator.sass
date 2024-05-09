@@ -1,138 +1,140 @@
-.header
-    .header-text
-        width: 100%
-        height: 60vh
-        padding: 0 100px
-        box-sizing: border-box
-        background-image: url('/assets/hand_title.png')
-        background-position-y: -80px
-        background-size: cover
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-
-        h1
-            font-size: 64px
-            font-family: "Zen Antique Soft"
-            font-weight: normal
-            color: #6B5F58
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25)
-    
-    .action-indicator
-        display: flex
-        justify-content: center
-        position: relative
-        top: -70px
-
-        .mode-selector
+.generator
+    padding-bottom: 40px
+    .header
+        .header-text
+            width: 100%
+            height: 60vh
+            padding: 0 100px
+            box-sizing: border-box
+            background-image: url('/assets/hand_title.png')
+            background-position-y: -80px
+            background-size: cover
             display: flex
+            flex-direction: column
             justify-content: center
+            align-items: center
 
-            .mode-button
-                height: 40vh
-                width: 40vh
-                border: none
-                outline: none
-                background-color: white
-                border-radius: 30px
-                display: flex
-                flex-direction: column
-                justify-content: center
-                align-items: center
-                position: relative
-                cursor: pointer
-
-                .mode
-                    color: #A78E87
-                    font-size: 27px
-                    font-family: "Zen Old Mincho"
-                
-                .free
-                    position: absolute
-                    font-size: 20px
-                    font-family: "Zen Old Mincho"
-                    top: 10px
-                    right: 10px
-                    padding: 8px 25px
-                    color: white
-                    background-color: #A78E87
-                    border-radius: 30px
-                
-                &:nth-last-child(1)
-                    margin-left: 40px
+            h1
+                font-size: 64px
+                font-family: "Zen Antique Soft"
+                font-weight: normal
+                color: #6B5F58
+                text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25)
         
-        .progress-indicator
+        .action-indicator
             display: flex
             justify-content: center
+            position: relative
+            top: -70px
 
-            .stage
-                width: 127px
+            .mode-selector
                 display: flex
-                flex-direction: column
                 justify-content: center
-                align-items: center
-                position: relative
 
-                .stage-number
-                    font-size: 48px
-                    font-family: "Zen Old Mincho"
-                    color: white
-                    width: 127px
-                    height: 127px
-                    border-radius: 50%
+                .mode-button
+                    height: 40vh
+                    width: 40vh
+                    border: none
+                    outline: none
+                    background-color: white
+                    border-radius: 30px
                     display: flex
+                    flex-direction: column
                     justify-content: center
                     align-items: center
+                    position: relative
+                    cursor: pointer
 
-                    &.current-stage
-                        background-color: #C17447
+                    .mode
+                        color: #A78E87
+                        font-size: 27px
+                        font-family: "Zen Old Mincho"
                     
-                    &.completed-stage
-                        background-color: #78635D
-                    
-                    &.future-stage
-                        background-color: #CDC2BF
-                .stage-text
-                    font-size: 22px
-                    font-family: "Zen Old Mincho"
-                    color: #A78E87
-                    margin-top: 10px
-                
-                &:not(:last-child)
-                    margin-right: 100px
-                    &::after
-                        content: ""
-                        width: 100px
-                        height: 0px
-                        display: inline-block
-                        border-top: 1px dashed black
+                    .free
                         position: absolute
-                        top: 70px
-                        left: 127px
+                        font-size: 20px
+                        font-family: "Zen Old Mincho"
+                        top: 10px
+                        right: 10px
+                        padding: 8px 25px
+                        color: white
+                        background-color: #A78E87
+                        border-radius: 30px
+                    
+                    &:nth-last-child(1)
+                        margin-left: 40px
+            
+            .progress-indicator
+                display: flex
+                justify-content: center
 
-.navigation
-    display: flex
-    justify-content: center
+                .stage
+                    width: 127px
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: center
+                    position: relative
 
-    button
-        height: 40px
-        padding: 0 20px
-        border: none
-        outline: none
-        border-radius: 20px
-        color: white
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-        cursor: pointer
+                    .stage-number
+                        font-size: 48px
+                        font-family: "Zen Old Mincho"
+                        color: white
+                        width: 127px
+                        height: 127px
+                        border-radius: 50%
+                        display: flex
+                        justify-content: center
+                        align-items: center
 
-        &:not(:last-child)
-            margin-right: 30px
+                        &.current-stage
+                            background-color: #C17447
+                        
+                        &.completed-stage
+                            background-color: #78635D
+                        
+                        &.future-stage
+                            background-color: #CDC2BF
+                    .stage-text
+                        font-size: 22px
+                        font-family: "Zen Old Mincho"
+                        color: #A78E87
+                        margin-top: 10px
+                    
+                    &:not(:last-child)
+                        margin-right: 100px
+                        &::after
+                            content: ""
+                            width: 100px
+                            height: 0px
+                            display: inline-block
+                            border-top: 1px dashed black
+                            position: absolute
+                            top: 70px
+                            left: 127px
 
-        &.prev
-            background-color: #CDC2BF
-        
-        &.save
-            background-color: #C17447
+    .navigation
+        display: flex
+        justify-content: center
 
-        &.next
-            background-color: #78635D
+        button
+            height: 40px
+            padding: 0 20px
+            border: none
+            outline: none
+            border-radius: 20px
+            color: white
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+            cursor: pointer
+
+            &:not(:last-child)
+                margin-right: 30px
+
+            &.prev
+                background-color: #CDC2BF
+            
+            &.save
+                background-color: #C17447
+
+            &.next
+                background-color: #78635D

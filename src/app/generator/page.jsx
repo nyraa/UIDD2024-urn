@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./generator.sass"
 import Nav from "@app/components/Nav"
 import Splitter from "@app/components/Splitter";
+import Form from "./Form"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,8 +14,11 @@ export default function GeneratorPage() {
     return (
         <>
             <Nav title={true} />
-            <Header stage={stage} setStage={setStage} />
-            {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
+            <div className="generator">
+                <Header stage={stage} setStage={setStage} />
+                {stage == 1 && <Form />}
+                {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
+            </div>
         </>
     );
 }
@@ -93,8 +97,4 @@ function Navigation({ stage, setStage }) {
             <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );
-}
-
-function Form() {
-
 }
