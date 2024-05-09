@@ -3,60 +3,6 @@ body
     margin: 0px;
     padding: 0px;
 }
-/* .nav1
-{
-    top: 3vw;
-    right: 8vw;
-    position: absolute;
-    border: 2px solid #f30bb1;
-    z-index: 10;
-    align-items: center;
-    display: flex;
-}
-.nav1 a
-{
-    font-family: "Zen Old Mincho";
-    margin-left: 7vw;
-    font-size: 27px;
-    color: #A78E87;
-    text-decoration: none;
-    text-align: right;
-}
-.page1-title
-{
-    border: 2px solid #d0f30b;
-    font-family: "Zen Antique Soft";
-    font-size: 40px;
-    position: absolute;
-    left: 10vw;
-    top: 2vw;
-    z-index: 10;
-    
-    display: flex;
-    align-items: center;
-    color: #A78E87;
-    user-select: none;
-}
-.page1-title::before
-{
-    border: 2px solid #d0f30b;
-    content: "";
-    height: 54px;
-    width: 54px;
-    background-size: cover;
-    display: inline-block;
-    background-image: url("../picture/logo.png");
-    margin-top: 7px;
-    margin-right: 33px;
-}
-.top
-{
-    position: absolute;
-    width: 100vw;
-    height: 14vh;
-    margin-top: 0px;
-    background-color: rgb(255, 255, 255);
-} */
 .bottom
 {
     position: absolute;
