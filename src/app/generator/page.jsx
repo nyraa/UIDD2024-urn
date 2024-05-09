@@ -57,9 +57,27 @@ function ModeButton({ mode, setStage }) {
 function ProgressIndicator({ stage }) {
     return (
         <div className="progress-indicator">
-            <div className="progress-bar">
-                <div className="progress" style={{ width: `${stage * 33.3}%` }}></div>
+            <Stage stage={stage} targetStage={0} />
+            <Stage stage={stage} targetStage={1} />
+            <Stage stage={stage} targetStage={2} />
+            <Stage stage={stage} targetStage={3} />
+        </div>
+    );
+}
+
+function Stage({ stage, targetStage }) {
+    const stage_text = [
+        "方案選擇",
+        "資料填寫",
+        "塔位生成",
+        "上傳設定"
+    ];
+    return (
+        <div className="stage">
+            <div className={`stage-number ${stage == targetStage ? "current-stage" : stage > targetStage ? "completed-stage" : "future-stage"}`}>
+                <span>{targetStage + 1}</span>
             </div>
+            <span className="stage-text">{stage_text[targetStage]}</span>
         </div>
     );
 }

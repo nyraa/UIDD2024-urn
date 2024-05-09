@@ -61,4 +61,52 @@
                 
                 &:nth-last-child(1)
                     margin-left: 40px
+        
+        .progress-indicator
+            display: flex
+            justify-content: center
+
+            .stage
+                width: 127px
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                position: relative
+
+                .stage-number
+                    font-size: 48px
+                    font-family: "Zen Old Mincho"
+                    color: white
+                    width: 127px
+                    height: 127px
+                    border-radius: 50%
+                    display: flex
+                    justify-content: center
+                    align-items: center
+
+                    &.current-stage
+                        background-color: #C17447
                     
+                    &.completed-stage
+                        background-color: #78635D
+                    
+                    &.future-stage
+                        background-color: #CDC2BF
+                .stage-text
+                    font-size: 22px
+                    font-family: "Zen Old Mincho"
+                    color: #A78E87
+                    margin-top: 10px
+                
+                &:not(:last-child)
+                    margin-right: 100px
+                    &::after
+                        content: ""
+                        width: 100px
+                        height: 0px
+                        display: inline-block
+                        border-top: 1px dashed black
+                        position: absolute
+                        top: 70px
+                        left: 127px
