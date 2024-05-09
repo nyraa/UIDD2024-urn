@@ -85,7 +85,6 @@
         width: 20%
         height: 120px
         text-decoration: none
-        margin-left: 2vw
         color: #A78E87
         display: inline-flex
         justify-content: center
@@ -94,3 +93,28 @@
     .more-category
         background-color: #A78E87
         color: white
+
+.die-today
+    width: 100%
+    padding: 100px 100px
+    box-sizing: border-box
+    display: flex
+    justify-content: space-between
+
+    .person
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 30%
+
+        .picture
+            width: 100%
+        
+        .urn
+            width: 50%
+            transition: all 0.3s ease
+            position: relative
+            top: -120px
+            &:hover
+                top: -160px
+                width: 70%

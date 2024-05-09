@@ -16,6 +16,7 @@ export default function Home() {
             <Splitter>以不同類別探索靈骨塔</Splitter>
             <CategorySection />
             <Splitter>今日逝世紀念</Splitter>
+            <DieToday />
         </>
     );
 };
@@ -33,7 +34,7 @@ function FindYourLove() {
             <SearchBox />
         </section>
     );
-};
+}
 
 function ActionLinks() {
     return (
@@ -42,7 +43,7 @@ function ActionLinks() {
             <ActionLink title="AI悼念互動" line1="搜尋全球首創" line2="AI 互動線上靈塔" />
         </section>
     );
-};
+}
 
 function ActionLink({ title, line1, line2, href }) {
     return (
@@ -53,7 +54,7 @@ function ActionLink({ title, line1, line2, href }) {
             <div className="intro-text">{line1}<br />{line2}</div>
         </div>
     );
-};
+}
 
 function CategorySection() {
     return (
@@ -64,7 +65,7 @@ function CategorySection() {
             <MoreCategory name="更多類別" href="#" />
         </section>
     );
-};
+}
 
 function Category({ name, href, more }) {
     return (
@@ -72,7 +73,7 @@ function Category({ name, href, more }) {
             <span>{name}</span>
         </a>
     );
-};
+}
 
 function MoreCategory({ name, href, more }) {
     return (
@@ -80,4 +81,23 @@ function MoreCategory({ name, href, more }) {
             <span>{name} 〉</span>
         </a>
     );
-};
+}
+
+function DieToday() {
+    return (
+        <section className="die-today">
+            <Avatar src="assets/person1.png" />
+            <Avatar src="assets/person2.png" />
+            <Avatar src="assets/person3.png" />
+        </section>
+    );
+}
+
+function Avatar({ src }) {
+    return (
+        <div className="person">
+            <img className="picture" src={src} />
+            <img className="urn" src="assets/urn.png" />
+        </div>
+    )
+}
