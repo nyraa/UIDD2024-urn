@@ -116,8 +116,19 @@ textarea {
 .bottom-section {
     text-align: center;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
   }
-  
+  .control-section {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平分布 */
+    width: 100%; /* 确保占满整行 */
+}
+
+.control-section button, .control-section div {
+    margin: 0 10px; /* 每个元素的间距 */
+} 
   .bottom-section hr {
     margin-bottom: 10px;
   }

@@ -98,7 +98,7 @@ header {
     width: 90px; /* 进度点的宽度 */
     background-color: #A78E87;
     border-radius: 50%;
-    margin: 10px;
+    margin: 10px 30px;
     position: relative;
     color: black;
 }
@@ -133,6 +133,7 @@ header {
     width: 80%;
     margin: 50px auto;
     padding: 50px;
+    padding-bottom: 0;
 }
 
 .form-section {
@@ -288,7 +289,8 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
+    margin-bottom: 200px; /* 在波浪下方添加20px的空隙 */
+
 }
 .form-navigation button img{
     width: auto;
@@ -298,4 +300,18 @@ textarea {
 /* 如果需要，为按钮添加一些点击反馈 */
  .form-navigation button:hover {
     opacity: 0.8;  /* 点击时的透明度变化，提供视觉反馈 */
+}
+
+.wave-container {
+    position: fixed;  /* 固定定位，确保容器固定在视口底部 */
+    bottom: 0;  /* 定位到视口的底部 */
+    width: 100%;  /* 宽度占满整个屏幕宽 */
+    height: auto;  /* 高度自适应 */
+    z-index: 1005;  /* 调整z-index以确保在其他内容之上 */
+    left: 0;  /* 添加左对齐，确保横向展开 */
+}
+
+.wave-container img {
+    width: 100%;  /* 图像宽度占满容器宽 */
+    height: auto;  /* 高度自适应，保持图像比例不变形 */
 }
