@@ -64,7 +64,7 @@
         <section class="form-section">
             <h2 class="section-title">生命故事</h2>
             <textarea id="lifeStory" placeholder="請寫下您的生命故事，與世人分享..."></textarea>
-            <button type="button">需要幫忙嗎？試試AI輔助引導式生命故事撰寫</button>
+            <button type="button" id="ai_button">需要幫忙嗎？試試AI輔助引導式生命故事撰寫</button>
         </section>
         <!-- 个人金句区块 -->
         <section class="form-section">
@@ -105,3 +105,11 @@
     </div>    
 </body>
 </html>
+
+<button type="button" id="myButton">点击跳转</button>
+
+<script>
+    document.getElementById('ai_button').addEventListener('click', function() {
+        window.location.href = 'aiwriter.html';  // 修改为您的目标 URL
+    });
+</script>
