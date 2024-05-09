@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可展开列表</title>
+<link rel="stylesheet" href="aiwriter.css">
+</head>
+<body>
+
+    <h2>Ai輔助生命故事撰寫</h2>
+    <div class="subtitle"><p>請填寫相關的生命的資訊以開始。可以嘗試創建多個版本，並挑選最喜愛的版本。</p></div>
+    <button class="accordion">基本資料</button>
+    <div class="panel">
+        <form>
+        <div class="form-row">
+            <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+            <label for="gender">性别</label>
+            <select id="gender" name="gender">
+                <option value="male">男</option>
+                <option value="female">女</option>
+                <option value="other">其他</option>
+            </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+            <label for="birth">出生日期</label>
+            <input type="date" id="birth" name="birth">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+            <label for="death">死亡日期</label>
+            <input type="date" id="death" name="death">
+            </div>
+        </div>
+        </form>
+    </div>
+    
+    <hr>
+    <button class="accordion">常見資訊</button>
+    <div class="panel">
+        <form>
+        <div class="form-group">
+            <label for="info1">逝者的特點</label>
+            <textarea id="info1" name="info1" rows="4" placeholder="如何描述他/她的性格、特質等？"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="info2">悼念活動</label>
+            <textarea id="info2" name="info2" rows="4" placeholder="是否計畫了悼念活動？地點時間是？"></textarea>
+        </div>
+        </form>
+    </div>
+    
+    <hr>
+    <button class="accordion">家庭背景</button>
+    <div class="panel">
+        <form>
+        <div class="form-group">
+            <label for="info1">親愛的在世家人</label>
+            <textarea id="info1" name="info1" rows="4" placeholder="請為親近的在逝家庭成員提供名字和關係"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="info2">親愛的已逝親人</label>
+            <textarea id="info2" name="info2" rows="4" placeholder="請為親近的已逝家庭成員提供名字和關係"></textarea>
+        </div>
+        </form>
+    </div>
+
+    <hr>
+    <button class="accordion">教育程度</button>
+    <div class="panel">
+        <form>
+          <div class="form-group">
+            <label for="small-address">小學</label>
+            <input type="text" id="small-address" name="small-address" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="medium-address">中學</label>
+            <input type="text" id="medium-address" name="medium-address" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="large-address">大學</label>
+            <input type="text" id="large-address" name="large-address" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="postal-code">研究所</label>
+            <input type="text" id="postal-code" name="postal-code" placeholder="">
+          </div>
+        </form>
+    </div>
+      
+    <hr> 
+    <button class="accordion">職業生涯</button>
+    <div class="panel">
+        <form>
+            <div class="form-group">
+                <label for="info1">職業/職涯亮點</label>
+                <textarea id="info1" name="info1" rows="4" placeholder="請列出逝者的工作經驗和任何職涯成就"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+    <button class="accordion">興趣愛好</button>
+    <div class="panel">
+        <form>
+            <div class="form-group">
+                <label for="info1">任何興趣愛好</label>
+                <textarea id="info1" name="info1" rows="4" placeholder="平日熱衷於做些什麼？"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+    <button class="accordion">志願服務</button>
+    <div class="panel">
+        <form>
+            <div class="form-group">
+                <label for="info1">任何興趣愛好</label>
+                <textarea id="info1" name="info1" rows="4" placeholder="平日熱衷於做些什麼？"></textarea>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+    <button class="accordion">宗教信仰</button>
+    <div class="panel">
+        <form>
+            <div class="form-group">
+                <label for="info1">所信仰宗教</label>
+                <textarea id="info1" name="info1" rows="4" placeholder=""></textarea>
+            </div>
+        </form>
+    </div>
+
+    <script src="aiwriter.js"></script>
+    
+    <hr>
+    <div class="bottom-section">
+        <button id="cancel-btn">取消</button>
+        <button id="confirm-btn">生成生命故事</button>
+        <div id="extra-content" style="display:none;">
+          <textarea rows="5" placeholder="请输入您的回答..."></textarea>
+          <button id="submit-btn">确認儲存</button>
+          <p>Ai運算並不完美。請仔細檢查草稿並修改，因生成語言可能存在不準確之處</p>
+        </div>
+    </div>
+      
+
+</body>
+</html>

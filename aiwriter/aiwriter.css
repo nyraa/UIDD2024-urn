@@ -1,0 +1,153 @@
+h2{
+    text-align: center;
+    color: #a78e87;
+    font-size: 36px;
+}
+.subtitle{
+    text-align: center;
+    color: #7b7b7b;
+    font-size: 18px;
+}
+
+.accordion {
+    cursor: pointer;
+    color: #7b7b7b;
+    background-color: #Ffffff;
+    padding: 10px 10vw;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+hr{
+    width: 85%;
+}
+
+.accordion input,
+.accordion textarea,
+.accordion select {
+  border-radius: 10px;  /* 设置边框为圆角 */
+  border: 1px solid #ccc;  /* 设置边框颜色 */
+  padding: 8px;  /* 设置内边距 */
+  width: 100%;  /* 设置宽度为容器的100% */
+}
+
+.accordion .form-group {
+  margin-bottom: 10px;  /* 设置表单元素之间的间距 */
+}
+
+.accordion .form-group label {
+  display: block;  /* 使标签独占一行 */
+  margin-bottom: 5px;  /* 设置标签下边距 */
+}
+
+.panel {
+    padding: 0 10vw;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+  
+.form-group {
+    flex: 1;
+    margin-right: 20px;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    line-height: 1.25;
+    border: 1px solid #ccc;
+}
+  
+  /* Remove margin for the last form group in each row */
+.form-group:last-child {
+    margin-right: 0;
+ }
+/*------------------------------------------------------*/
+.form-group {
+    margin-bottom: 15px;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allows vertical resizing, not horizontal */
+}
+  
+/*---------------------------*/
+.form-group {
+    margin-bottom: 10px;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/*---------------------------*/
+
+.bottom-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .bottom-section hr {
+    margin-bottom: 10px;
+  }
+  
+  .bottom-section button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #confirm-btn {
+    background-color: #d2691e;
+    color: white;
+  }
+  
+  #cancel-btn {
+    background-color: #a9a9a9;
+  }
+  
+  #extra-content textarea {
+    width: 90%;
+    margin-top: 10px;
+  }
+  
+  #extra-content button {
+    margin-top: 10px;
+    background-color: #228b22;
+    color: white;
+  }
+  
+/*---------------------------*/
