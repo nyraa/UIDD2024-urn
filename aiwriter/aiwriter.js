@@ -13,9 +13,17 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('confirm-btn').addEventListener('click', function() {
+    document.getElementById('extra-content1').style.display = 'block';
+});
+  document.getElementById('confirm-btn').addEventListener('click', function() {
+    document.getElementById('extra-content2').style.display = 'block';
+});
 document.getElementById('confirm-btn').addEventListener('click', function() {
-    document.getElementById('extra-content').style.display = 'block';
-  });
+  document.getElementById('extra-content3').style.display = 'block';
+});
+});
   
   document.getElementById('cancel-btn').addEventListener('click', function() {
     document.getElementById('extra-content').style.display = 'none';
