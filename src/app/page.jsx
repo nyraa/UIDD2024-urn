@@ -22,6 +22,8 @@ export default function Home() {
 function FindYourLove() {
     return (
         <section className="find-your-love">
+            <video src="assets/homepage.mp4" className="background-video" autoPlay={true} loop={true} muted={true}>
+            </video>
             <h1>尋找所愛</h1>
             <div className="description">
                 搜尋全球首創AI互動線上靈塔
