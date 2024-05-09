@@ -1,8 +1,9 @@
 import "./Form.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FormSection, FormField } from "./FormComponents";
 
-export default function Form({ onChange=() => {}}) {
+export default function Form1({ onChange=() => {}}) {
     return (
         <form className="form" onSubmit={(e) => e.preventDefault()}>
             <FormSection title="基本資料">
@@ -46,25 +47,5 @@ export default function Form({ onChange=() => {}}) {
                 
             </FormSection>
         </form>
-    );
-}
-
-function FormSection({ title, children }) {
-    return (
-        <section className="form-section">
-            <h2>{title}</h2>
-            <div className="form-fields">
-                {children}
-            </div>
-        </section>
-    );
-}
-
-function FormField({ label, column="1-1", children }) {
-    return (
-        <div className={`form-field column-frac-${column}`}>
-            <label>{label ?? "　"}</label>
-            {children}
-        </div>
     );
 }
