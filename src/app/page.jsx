@@ -39,20 +39,20 @@ function FindYourLove() {
 function ActionLinks() {
     return (
         <section className="action-links">
-            <ActionLink title="協助創建塔位" line1="AI 輔助個人事蹟創建" line2="助您珍藏在世寶貴回憶" />
-            <ActionLink title="AI悼念互動" line1="搜尋全球首創" line2="AI 互動線上靈塔" />
+            <ActionLink title="協助創建塔位" line1="AI 輔助個人事蹟創建" line2="助您珍藏在世寶貴回憶" href="generator" />
+            <ActionLink title="AI悼念互動" line1="搜尋全球首創" line2="AI 互動線上靈塔" href="#" />
         </section>
     );
 }
 
 function ActionLink({ title, line1, line2, href }) {
     return (
-        <div className="action-link">
+        <a className="action-link" href={href}>
             <img className="logo" src="assets/logo.png" />
             <div className="intro-title">{title}</div>
             <div className="hr"></div>
             <div className="intro-text">{line1}<br />{line2}</div>
-        </div>
+        </a>
     );
 }
 
