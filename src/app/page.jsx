@@ -14,10 +14,11 @@ export default function Home() {
             <FindYourLove />
             <ActionLinks />
             <Splitter>以不同類別探索靈骨塔</Splitter>
+            <CategorySection />
             <Splitter>今日逝世紀念</Splitter>
         </>
     );
-}
+};
 
 // 尋找所愛
 function FindYourLove() {
@@ -31,8 +32,8 @@ function FindYourLove() {
             </div>
             <SearchBox />
         </section>
-    )
-}
+    );
+};
 
 function ActionLinks() {
     return (
@@ -40,8 +41,8 @@ function ActionLinks() {
             <ActionLink title="協助創建塔位" line1="AI 輔助個人事蹟創建" line2="助您珍藏在世寶貴回憶" />
             <ActionLink title="AI悼念互動" line1="搜尋全球首創" line2="AI 互動線上靈塔" />
         </section>
-    )
-}
+    );
+};
 
 function ActionLink({ title, line1, line2, href }) {
     return (
@@ -51,5 +52,32 @@ function ActionLink({ title, line1, line2, href }) {
             <div className="hr"></div>
             <div className="intro-text">{line1}<br />{line2}</div>
         </div>
-    )
-}
+    );
+};
+
+function CategorySection() {
+    return (
+        <section className="category-section">
+            <Category name="年齡" href="#" />
+            <Category name="地區" href="#" />
+            <Category name="史事" href="#" />
+            <MoreCategory name="更多類別" href="#" />
+        </section>
+    );
+};
+
+function Category({ name, href, more }) {
+    return (
+        <a href={href} className="category">
+            <span>{name}</span>
+        </a>
+    );
+};
+
+function MoreCategory({ name, href, more }) {
+    return (
+        <a href={href} className="more-category">
+            <span>{name} 〉</span>
+        </a>
+    );
+};
