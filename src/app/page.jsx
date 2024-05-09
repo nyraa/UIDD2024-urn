@@ -8,16 +8,16 @@ import "./homepage.sass";
 
 export default function Home() {
     return (
-        <div>
+        <>
             <Nav title={true} />
-            <HomeBanner />
+            {/* <HomeBanner /> */}
             <FindYourLove />
             <ActionLinks />
             <Splitter>以不同類別探索靈骨塔</Splitter>
             <CategorySection />
             <Splitter>今日逝世紀念</Splitter>
             <DieToday />
-        </div>
+        </>
     );
 };
 
