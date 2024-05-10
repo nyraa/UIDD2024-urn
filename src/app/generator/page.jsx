@@ -5,6 +5,7 @@ import "./generator.sass"
 import Nav from "@app/components/Nav"
 import Splitter from "@app/components/Splitter";
 import Form1 from "./Form1"
+import Form2 from "./Form2"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,6 +18,7 @@ export default function GeneratorPage() {
             <div className="generator">
                 <Header stage={stage} setStage={setStage} />
                 {stage == 1 && <Form1 />}
+                {stage == 2 && <Form2 />}
                 {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
             </div>
         </>
