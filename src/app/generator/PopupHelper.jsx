@@ -39,7 +39,7 @@ function HelperSection({ title, children }) {
     return (
         <section className="helper-section">
             <h2 {...getToggleProps()}>{title}</h2>
-            <div {...getCollapseProps()}>
+            <div {...getCollapseProps()} className="form-fields">
                 {children}
             </div>
         </section>
