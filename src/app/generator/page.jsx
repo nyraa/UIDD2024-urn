@@ -15,7 +15,7 @@ export default function GeneratorPage() {
     return (
         <>
             <Nav title={true} />
-            <div className="generator">
+            <div className={`generator ${stage >= 1 && stage <= 2 ? "wave-bg" : ""}`}>
                 <Header stage={stage} setStage={setStage} />
                 {stage == 1 && <Form1 />}
                 {stage == 2 && <Form2 />}
