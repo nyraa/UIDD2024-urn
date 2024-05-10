@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./generator.sass"
 import Nav from "@app/components/Nav"
 import Splitter from "@app/components/Splitter";
@@ -13,6 +13,13 @@ import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-s
 export default function GeneratorPage() {
     const [stage, setStage] = useState(0);
     const [popup, setPopup] = useState(false);
+
+    useEffect(() => {
+        if(stage >= 4)
+        {
+            window.location.href = "/bonelast/main.html";
+        }
+    }, [stage]);
 
     return (
         <>
