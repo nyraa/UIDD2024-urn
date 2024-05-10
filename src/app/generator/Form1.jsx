@@ -1,9 +1,10 @@
 import "./Form.sass";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FormSection, FormField } from "./FormComponents";
 
-export default function Form1({ onChange=() => {}}) {
+export default function Form1({ onChange=() => {}, setPopup }) {
     return (
         <form className="form" onSubmit={(e) => e.preventDefault()}>
             <FormSection title="基本資料">
@@ -35,7 +36,7 @@ export default function Form1({ onChange=() => {}}) {
             <FormSection title="生命故事">
                 <FormField column="1-1">
                     <textarea placeholder="寫下寶貴的生命故事，與世人分享..." onChange={(e) => onChange("story", e.target.value)} />
-                    <button className="generate-helper"><FontAwesomeIcon icon={faStar} size="2x" /><span>需要幫忙嗎？ 試試 AI 輔助引導式生命故事撰寫</span><FontAwesomeIcon icon={faArrowRight} size="2x" /></button>
+                    <button className="generate-helper" onClick={() => setPopup(true)}><FontAwesomeIcon icon={faStar} size="2x" /><span>需要幫忙嗎？ 試試 AI 輔助引導式生命故事撰寫</span><FontAwesomeIcon icon={faArrowRight} size="2x" /></button>
                 </FormField>
             </FormSection>
             <FormSection title="個人金句">

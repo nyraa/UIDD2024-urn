@@ -6,21 +6,24 @@ import Nav from "@app/components/Nav"
 import Splitter from "@app/components/Splitter";
 import Form1 from "./Form1"
 import Form2 from "./Form2"
+import PopupHelper from "./PopupHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 
 export default function GeneratorPage() {
     const [stage, setStage] = useState(0);
+    const [popup, setPopup] = useState(false);
 
     return (
         <>
             <Nav title={true} />
             <div className={`generator ${stage >= 1 && stage <= 2 ? "wave-bg" : ""}`}>
                 <Header stage={stage} setStage={setStage} />
-                {stage == 1 && <Form1 />}
+                {stage == 1 && <Form1 setPopup={setPopup} />}
                 {stage == 2 && <Form2 />}
                 {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
             </div>
+            {popup && <PopupHelper setPopup={setPopup} />}
         </>
     );
 }

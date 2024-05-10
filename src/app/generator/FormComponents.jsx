@@ -1,3 +1,5 @@
+import "./FormComponents.sass";
+
 export function FormSection({ title, children }) {
     return (
         <section className="form-section">
