@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { FormField } from "./FormComponents";
 import { useCollapse } from "react-collapsed";
 
+//flags
 
 export default function PopupHelper({ showPopup, setShowPopup, setStory }) {
     useEffect(() => {
@@ -27,7 +28,7 @@ export default function PopupHelper({ showPopup, setShowPopup, setStory }) {
                 <div className="Header">Ai 輔助生命故事撰寫</div>
                 <div className="subHeader">請填寫相關的生命的資訊以開始。可以嘗試創建多個版本，並挑選最喜愛的版本。</div>
             <HelperSection title="基本資料">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="姓名" column="1-2">
                     <input type="text" onChange={(e) => setStory("name", e.target.value)} />
                 </FormField>
@@ -55,27 +56,27 @@ export default function PopupHelper({ showPopup, setShowPopup, setStory }) {
                 </div>
             </HelperSection>
             <HelperSection title="常見資訊">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="逝者的特點">
-                    <textarea onChange={(e) => setStory("如何描述他們的性個、特質等？", e.target.value)} />
+                    <textarea placeholder="如何描述他們的性個、特質等？"onChange={(e) => setStory("如何描述他們的性個、特質等？", e.target.value)} />
                 </FormField>
                 <FormField label="悼念活動">
-                    <textarea onChange={(e) => setStory("是否計劃了悼念活動？地點和時間是？", e.target.value)} />
+                    <textarea placeholder="是否計劃了悼念活動？地點和時間是？"onChange={(e) => setStory("是否計劃了悼念活動？地點和時間是？", e.target.value)} />
                 </FormField>
                 </div>
             </HelperSection>
             <HelperSection title="家庭背景">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="親愛的在事家人">
-                    <textarea onChange={(e) => setStory("請為親近的在世家庭成員提供名字和關係。", e.target.value)} />
+                    <textarea placeholder="請為親近的在事家人提供名字和關係。"onChange={(e) => setStory("請為親近的在世家庭成員提供名字和關係。", e.target.value)} />
                 </FormField>
                 <FormField label="親愛的已逝家人">
-                    <textarea onChange={(e) => setStory("請為親近的已逝家庭成員提供名字和關係。", e.target.value)} />
+                    <textarea placeholder="請為親近的已逝家人提供名字和關係。"onChange={(e) => setStory("請為親近的已逝家庭成員提供名字和關係。", e.target.value)} />
                 </FormField>
                 </div>
             </HelperSection>
             <HelperSection title="教育程度">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="小學">
                     <input type="text" onChange={(e) => setStory("", e.target.value)} />
                 </FormField>
@@ -95,30 +96,30 @@ export default function PopupHelper({ showPopup, setShowPopup, setStory }) {
                 </div>
             </HelperSection>
             <HelperSection title="職業生涯">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="職業／職涯亮點">
-                    <textarea onChange={(e) => setStory("請列出逝者的工作經驗和任何職涯成就", e.target.value)} />    
+                    <textarea placeholder="請列出逝者的工作經驗和任何職涯成就 "onChange={(e) => setStory("請列出逝者的工作經驗和任何職涯成就", e.target.value)} />    
                 </FormField>
                 </div>
             </HelperSection>
             <HelperSection title="興趣愛好">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="任何的興趣愛好">
-                    <textarea onChange={(e) => setStory("平日熱衷於做什麼？", e.target.value)} />    
+                    <textarea placeholder="平日熱衷於做什麼？"onChange={(e) => setStory("平日熱衷於做什麼？", e.target.value)} />    
                 </FormField>
                 </div>
             </HelperSection>
             <HelperSection title="志願服務">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="任何志願服務">
-                    <textarea onChange={(e) => setStory("是否有志願服務？", e.target.value)} />    
+                    <textarea placeholder="是否有志願服務？"onChange={(e) => setStory("是否有志願服務？", e.target.value)} />    
                 </FormField>
                 </div>
             </HelperSection>
             <HelperSection title="宗教信仰">
-                <div className="popup-content">
+                <div className="popup-content form-fields">
                 <FormField label="所信仰的宗教">
-                    <textarea onChange={(e) => setStory("請列出逝者的信仰", e.target.value)} />    
+                    <textarea placeholder="請列出逝者的信仰"onChange={(e) => setStory("請列出逝者的信仰", e.target.value)} />    
                 </FormField>
                 </div>
             </HelperSection>

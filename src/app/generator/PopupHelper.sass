@@ -1,39 +1,46 @@
-.helper-section 
-    .form-fields
-        margin: 0px
-    .popup-helper 
-        position: absolute
-        .Header 
-            font-size: 28px
-            text-align: center
-        .subHeader
-            font-size: 18px
-            text-align: center
-    .popup-content 
-        background: white
-        padding: 20px
-        border-radius: 8px
-        width: 80%
-        max-width: 600px
-        position: relative
-        display: flex
-        flex-direction: column
-        box-sizing: border-box /* 确保 padding 包含在宽度内 */
-        overflow-y: auto 
+.popup-helper 
+    position: sticky
+    .Header 
+        font-size: 28px
+        font-family: "Zen Antique Soft"
+        color: #a78e87
+        margin-bottom: 1px
+        padding: 15px   
+        text-align: center
+    .subHeader
+        font-size: 17px
+        color: #7b7b7b
+        font-family: "Zen Antique Soft"
+        margin-bottom: 20px  
+        padding: 12px  
+        text-align: center
+.popup-content 
+    background: white
+    padding: 20px
+    border-radius: 8px
+    width: 100%
+    position: relative
+    display: flex
+    box-sizing: border-box /* 确保 padding 包含在宽度内 */
+    overflow-y: auto 
 .popup-helper-buttons 
     display: flex
     justify-content: center
     margin-top: 20px
     button 
         padding: 10px 20px
+        margin: 0 10px
         border: none
         border-radius: 20px
         cursor: pointer
     button:first-child 
         background: #ccc
-
     button:last-child 
-        background: #5cb85c
+        background: #f27108
         color: white
 .no-scroll 
     overflow: hidden
+.form
+    .form-section
+        h2
+            font-size: 24px
