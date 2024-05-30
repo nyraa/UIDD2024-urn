@@ -1,25 +1,61 @@
 "use client"
 
-import React, { useRef, useState } from 'react'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import React, { useEffect, useRef, useState } from 'react'
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { Environment, OrbitControls } from "@react-three/drei";
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { TextureLoader } from 'three';
+import * as THREE from 'three';
 
 
 function Bottle({ props })
 {
     const meshRef = useRef();
     const obj = useLoader(OBJLoader, "bottle-125.obj");
+    const texture = useLoader(TextureLoader, "assets/Group_6.png");
+    obj.traverse((child) => {
+        if(child.isMesh)
+        {
+            child.material = new THREE.MeshStandardMaterial({map: texture});
+        }
+    });
     return (
         <mesh
             {...props}
             ref={meshRef}
-            scale={1}
-            onClick={(event) => setActive(!active)}>
+            scale={1}>
             <primitive object={obj} scale={30} />
-            <meshStandardMaterial color={'orange'} />
+            <meshStandardMaterial map={texture} />
         </mesh>
     )
+}
+function CameraContrls()
+{
+    const { camera, gl } = useThree();
+    const controlRef = useRef();
+    useEffect(() => {
+        const radius = 5;
+        const polarAngle = (3 / 8) * Math.PI;
+        camera.position.set(
+            radius * Math.sin(polarAngle),
+            radius * Math.cos(polarAngle),
+            0
+        );
+        camera.lookAt(0, 0, 10);
+        if(controlRef.current)
+        {
+            controlRef.current.update();
+        }
+    }, [camera]);
+
+
+    return <OrbitControls
+        ref={controlRef}
+        args={[camera, gl.domElement]}
+        minPolarAngle={2 * Math.PI / 8}
+        maxPolarAngle={3 * Math.PI / 8}
+        enableZoom={false}
+    />;
 }
 
 function Box(props)
@@ -49,13 +85,12 @@ function Box(props)
 
 export default function Page() {
     return (
-
         <Canvas>
             <ambientLight intensity={Math.PI / 2} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
             <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-            <Environment preset="sunset" background />
             <Bottle position={[0, 0, 0]} />
+            <CameraContrls />
         </Canvas>
     )
 }
