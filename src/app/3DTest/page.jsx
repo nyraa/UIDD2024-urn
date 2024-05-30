@@ -11,7 +11,7 @@ import * as THREE from 'three';
 function Bottle({ props })
 {
     const meshRef = useRef();
-    const obj = useLoader(OBJLoader, "bottle-125.obj");
+    const obj = useLoader(OBJLoader, "bottles/1.obj");
     const texture = useLoader(TextureLoader, "assets/Group_6.png");
     obj.traverse((child) => {
         if(child.isMesh)
