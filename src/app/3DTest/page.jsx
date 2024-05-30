@@ -11,7 +11,7 @@ import * as THREE from 'three';
 function Bottle({ props })
 {
     const meshRef = useRef();
-    const obj = useLoader(OBJLoader, "bottles/1.obj");
+    const obj = useLoader(OBJLoader, "bottles/CAN-001.obj");
     const texture = useLoader(TextureLoader, "assets/Group_6.png");
     obj.traverse((child) => {
         if(child.isMesh)
@@ -24,7 +24,7 @@ function Bottle({ props })
             {...props}
             ref={meshRef}
             scale={1}>
-            <primitive object={obj} scale={30} />
+            <primitive object={obj} scale={10} />
             <meshStandardMaterial map={texture} />
         </mesh>
     )

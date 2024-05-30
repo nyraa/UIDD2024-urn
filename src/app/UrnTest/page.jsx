@@ -6,7 +6,7 @@ export default function UrnTest()
         <Urn
             objSrc="bottles/1.obj"
             textureSrc="assets/Group_6.png"
-            scale={12}
+            scale={20}
         />
     );
 }
