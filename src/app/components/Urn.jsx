@@ -8,10 +8,33 @@ import { TextureLoader } from "three";
 import { useSpring } from "@react-spring/three";
 import * as THREE from "three";
 
-export default function Urn({ objSrc, textureSrc, scale })
+const urns = [
+    {
+        objSrc: "bottles/1.obj",
+        scale: 12
+    },
+    {
+        objSrc: "bottles/CAN-001.obj",
+        scale: 5
+    },
+    {
+        objSrc: "bottles/round-can-001.obj",
+        scale: 10
+    },
+    {
+        objSrc: "bottles/round-jar-001.obj",
+        scale: 7.5
+    },
+    {
+        objSrc: "bottles/wine-bottle-007.obj",
+        scale: 3
+    }
+]
+
+export default function Urn({ objIndex, textureSrc })
 {
     const meshRef = useRef();
-    const obj = useLoader(OBJLoader, objSrc);
+    const obj = useLoader(OBJLoader, urns[objIndex].objSrc);
     const texture = useLoader(TextureLoader, textureSrc);
     obj.traverse((child) => {
         if(child.isMesh)
@@ -30,7 +53,7 @@ export default function Urn({ objSrc, textureSrc, scale })
                 <mesh
                     ref={meshRef}
                     scale={1}>
-                    <primitive object={obj} scale={scale} position={[0, -0.4, 0]} />
+                    <primitive object={obj} scale={urns[objIndex].scale} position={[0, -0.4, 0]} />
                 </mesh>
                 <CameraContrls hover={hover} />
             </Canvas>
@@ -41,7 +64,7 @@ export default function Urn({ objSrc, textureSrc, scale })
 function CameraContrls({ hover })
 {
     const { polarAngle } = useSpring({
-        polarAngle: hover ? 3 * Math.PI / 8 : 2 * Math.PI / 8,
+        polarAngle: hover ? 2 * Math.PI / 8 : 3 * Math.PI / 8,
         config: {
             tension: 280,
             friction: 60

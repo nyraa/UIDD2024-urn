@@ -4,9 +4,8 @@ export default function UrnTest()
 {
     return (
         <Urn
-            objSrc="bottles/1.obj"
+            objIndex={4}
             textureSrc="assets/Group_6.png"
-            scale={20}
         />
     );
 }
