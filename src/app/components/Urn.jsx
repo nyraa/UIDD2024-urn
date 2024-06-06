@@ -93,5 +93,6 @@ function CameraContrls({ hover })
         minPolarAngle={2 * Math.PI / 8}
         maxPolarAngle={3 * Math.PI / 8}
         enableZoom={false}
+        enablePan={false}
     />;
 }
