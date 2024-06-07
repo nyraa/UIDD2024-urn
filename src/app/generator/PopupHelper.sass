@@ -1,5 +1,6 @@
 .popup-helper 
     position: sticky
+    background-color: #ffffff
     .Header 
         font-size: 28px
         font-family: "Zen Antique Soft"
@@ -18,11 +19,9 @@
     background: white
     padding: 20px
     border-radius: 8px
-    width: 80%
-    max-width: 600px
+    width: 100%
     position: relative
     display: flex
-    flex-direction: column
     box-sizing: border-box /* 确保 padding 包含在宽度内 */
     overflow-y: auto 
 .popup-helper-buttons 
@@ -46,3 +45,12 @@
     .form-section
         h2
             font-size: 24px
+.helper-section-header
+    display: flex
+    flex-direction: row
+    .section-image
+        width: 5%
+        height: 5%
+        margin-right: 10px
+    .arrow-icon
+        margin-left: auto /* 确保箭头图标在最右侧 */
