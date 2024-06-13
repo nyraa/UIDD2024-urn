@@ -14,7 +14,7 @@ export default function Nav( { title, children } ) {
                 isLogin
                     ? <NavLink href="#" onClick={logout}>登出</NavLink>
                     : <>
-                        <NavLink href="#" onClick={login}>登入</NavLink>
+                        <NavLink href="/login" >登入</NavLink>
                         <NavLink href="#">註冊</NavLink>
                     </>
             }
