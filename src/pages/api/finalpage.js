@@ -7,9 +7,8 @@ export default async function handler(req, res) {
 
   try {
     const data = await prisma.morgue.findUnique({
-      where: 
-        { id }, // 替换为你实际的Morgue ID
-      
+      where: { id }, // 替换为你实际的Morgue ID
+      include: { gallery: true }
     });
     res.status(200).json(data);
   } catch (error) {

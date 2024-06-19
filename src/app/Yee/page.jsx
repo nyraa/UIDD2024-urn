@@ -47,10 +47,10 @@ export default  function Finalpage() {
             <Goldenword children={data}/> 
             <Flower/>           
             <Photoshot children={data}/>
-            
+            <Music/>
             <Name children={data}/>
             <About children={data}/>
-            <Slidepicture/>
+            <Slidepicture galleries={data?.gallery}/>
             <Story children={data}/>
         </>
     );
@@ -171,7 +171,9 @@ function Smoke(){
 
   return(
     <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/ig.png"), auto' : 'default' }} >
-       <button onClick={handleButtonClick} className="click">Click me</button>
+       <button onClick={handleButtonClick} className="click">
+       <img src="./picture/ig.png"/>
+       </button>
        <div 
         onClick={handleImageAClick} 
       >
@@ -236,6 +238,40 @@ function Flower(){
 
   );
 }
+function Music(){
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
+  const handleClick = () => {
+    const audio = new Audio("./music/yisell_sound.mp3");
+    audio.play();
+  };
+
+  return(
+    <div className="playmusic">
+      <img className="god" src="./picture/god.png"/>
+      <p></p>
+      <audio className="musicbox" src="./music/music_1.mp3" controls></audio>
+      <div
+        className="bellcontainer"
+        style={{ cursor: hovered ? `url("/picture/fb.png"), auto` : 'auto' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        <img className="bell" src="./picture/bell.png" alt="A" />
+      </div>
+
+    </div>
+  );
+}
 function Goldenword({children}){
     return(
         <div className = "goldenword"><p>{children ? children.golden_quote : 'Loading...'}</p></div>
@@ -291,7 +327,8 @@ function Story({children}){
     </section>
   );
 };
-function Slidepicture(){
+function Slidepicture({ galleries }){
+  console.log('Galleries:', galleries);
   const settings = {
     dots: true,
     infinite: true,
@@ -303,9 +340,9 @@ function Slidepicture(){
   return (
     <div className="slidepicture">
       <Slider {...settings}>
-        {movies.map((movie) => (
-          <div className="wrap">
-            <img src={movie.url} />
+        {galleries?.map((gallery) => (
+          <div className="wrap" key={gallery?.id}>
+            <img src={gallery.image} />
           </div>
         ))}
       </Slider>
