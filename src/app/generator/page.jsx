@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import "./generator.sass"
 import Nav from "@app/components/Nav"
@@ -9,6 +8,8 @@ import Form2 from "./Form2"
 import PopupHelper from "./PopupHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
+import {PrismaClient} from '@prisma/client';
+const prisma = new PrismaClient();
 
 export default function GeneratorPage() {
     const [stage, setStage] = useState(0);
@@ -102,10 +103,17 @@ function Stage({ stage, targetStage }) {
 }
 
 function Navigation({ stage, setStage }) {
+    const handleSave = () => {
+        // 獲取表單並提交
+        const form = document.querySelector('form');
+        if (form) {
+          form.requestSubmit(); // 使用 requestSubmit() 提交表單
+        }
+      };
     return (
         <div className="navigation">
             <button className="prev" onClick={() => setStage(stage - 1)}><FontAwesomeIcon icon={faArrowLeft} />　上一步</button>
-            <button className="save"><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
+            <button className="save" onClick={handleSave}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
             <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );

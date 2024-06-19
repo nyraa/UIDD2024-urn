@@ -4,9 +4,10 @@ import React, { useEffect } from 'react';
 import { FormField } from "./FormComponents";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";  
 import { useCollapse } from "react-collapsed";
-import { faArrowRight, faS } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight,faChevronUp , faChevronDown ,faS } from "@fortawesome/free-solid-svg-icons";
 import { faStar, faInfoCircle, faUsers, faGraduationCap, faBriefcase, faHeart, faHandsHelping, faPrayingHands } from "@fortawesome/free-solid-svg-icons";
-
+import {PrismaClient} from '@prisma/client';
+const prisma = new PrismaClient();
 //flags
 
 export default function PopupHelper({ showPopup, setShowPopup, setStory }) {
@@ -147,7 +148,9 @@ function HelperSection({ title, children,icon,image }) {
              <div className="helper-section-header" {...getToggleProps({ onClick: toggleSection })}>
                 {image && <img src={image} alt="icon" className="section-image" />}
                 <h2>{title}</h2>
-                <FontAwesomeIcon icon={faArrowRight} className={`arrow-icon ${isOpen ? 'open' : ''}`} />
+                <div className="arrow-icon">
+                    <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} className={`arrow-icon ${isOpen ? 'open' : ''}`} />
+                </div>
             </div>
             <div {...getCollapseProps()} className="form-fields">
                 {isOpen && children}
