@@ -281,7 +281,7 @@ function Music(){
   return(
     <>
     <button className="toggle-button" onClick={toggleVisibility}>
-      聽佛經
+      聽佛經time
     </button>
     <div className={`playmusic ${isVisible ? 'visible' : ''}`}>
       <img className="god" src="./picture/god.png"/>
