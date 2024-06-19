@@ -85,7 +85,7 @@
             max-height: 90%
             margin-top:40vh
             position: absolute
-            top: 50% 
+            top: 60% 
             left: 50% 
             transform: translate(-50%, -50%)
 
@@ -109,6 +109,10 @@
         left: 50% 
         transform: translate(-50%)  
 
+.morgueitems
+
+
+
 .smoke
     position: absolute
     padding:20vh 50vw
@@ -116,11 +120,13 @@
     top:81vh
     z-index: 5
     .click
-        position: absolute
+        position: fixed
         right:20%
         z-index: 7
         border: none
         background-color: transparent
+        right: 30px
+        top: 75vh
     .xianglu
         position: absolute
         top: 44vh
@@ -164,38 +170,36 @@
 
 .flowers
     position: absolute
-    z-index: 1
+    top: 86vh
     .cl1
-        position: absolute
+        position: fixed
         z-index: 7
+        right: 30px
+        top: 83vh
     .cl2
-        position: absolute
+        position: fixed
         z-index: 7  
-        left:80px
+        right: 30px
+        top: 87vh
     .flower1
         position: absolute
         z-index: 0
-        top: 0vh
-        transform: translate(81%,-8%)
-        width: 55vw
-        overflow-x: hidden        
+        transform: translate(81%,-63%)       
+        width: 55vw       
     .flower2
         position: absolute
         z-index: 0
-        top: 0vh
-        transform: translate(169%,38%)
+        transform: translate(169%,-50%)
         width: 37vw
     .flower3
         position: absolute
         z-index: 0
-        top: 0vh
-        transform: translate(0%,26%)
+        transform: translate(0%,-52%)
         width: 36vw
     .flower4
         position: absolute
         z-index: 0
-        top: 0vh
-        transform: translate(-2%,-25%)
+        transform: translate(-2%,-64%)
         width: 47vw
 
 .playmusic
@@ -211,10 +215,11 @@
         width: 153px
         height: 153px
     .musicbox
-        width: 182px
+        width: 152px
+
     .bellcontainer
         width: 124px
-        height: 97px
+        height: 67px
         .bell
             width: 180px
             height: auto

@@ -44,10 +44,9 @@ export default  function Finalpage() {
         <>
             <Nav title={true} />
             <Background />
-            <Goldenword children={data}/> 
-            <Flower/>           
+            <Goldenword children={data}/>
+            <Morgueitems/>     
             <Photoshot children={data}/>
-            <Music/>
             <Name children={data}/>
             <About children={data}/>
             <Slidepicture galleries={data?.gallery}/>
@@ -102,7 +101,7 @@ function Photoshot({children}){
     <section className="photoshot">
     <Mainphoto picturedata={children}/>
     <Bonebox/>
-    <Smoke/>
+    
     </section>
   );
 }
@@ -123,6 +122,20 @@ function Bonebox(){
     </section>
   );
 }
+function Morgueitems(){
+
+return(
+  <>
+  <section className="morgueitems">
+
+  </section>
+    <Smoke/>
+    <Flower/>
+    <Music/>   
+  </>
+
+)
+};
 function Smoke(){
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [showImages, setShowImages] = useState(false);
@@ -223,16 +236,16 @@ function Flower(){
 
   return(
     <section className="flowers">
-      <h1>Counter: {count}</h1>
+      {/* <p className="counter">Counter: {count}</p> */}
       <button className="cl1" onClick={handleIncrement}>Increment</button>
       <button className="cl2" onClick={handleReset}>Reset</button>
       {count >= 10 && (
-        <div>
+        <>
           <img className="flower1" src="./picture/flower1.png" alt="Flower 1" />
           <img className="flower2" src="./picture/flower2.png" alt="Flower 2" />
           <img className="flower4" src="./picture/flower4.png" alt="Flower 4" />
           <img className="flower3" src="./picture/flower3.png" alt="Flower 3" />
-        </div>
+        </>
       )}
     </section>
 
@@ -272,6 +285,9 @@ function Music(){
     </div>
   );
 }
+
+
+
 function Goldenword({children}){
     return(
         <div className = "goldenword"><p>{children ? children.golden_quote : 'Loading...'}</p></div>
