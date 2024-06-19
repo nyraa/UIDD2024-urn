@@ -123,15 +123,23 @@ function Bonebox(){
   );
 }
 function Morgueitems(){
-
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 return(
   <>
   <section className="morgueitems">
 
   </section>
+  <div className={`expandable-tags ${isExpanded ? 'expanded' : ''}`}> 
     <Smoke/>
     <Flower/>
-    <Music/>   
+    <Music/>    
+  </div>
+  {/* <button className="expand-button" onClick={toggleExpand}>
+      {isExpanded ? '⬆' : '⬇'}
+  </button> */}
   </>
 
 )
@@ -183,10 +191,8 @@ function Smoke(){
   }, []);
 
   return(
-    <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/ig.png"), auto' : 'default' }} >
-       <button onClick={handleButtonClick} className="click">
-       <img src="./picture/ig.png"/>
-       </button>
+    <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }} >
+       <button onClick={handleButtonClick} className="click">上香</button>
        <div 
         onClick={handleImageAClick} 
       >
@@ -237,7 +243,7 @@ function Flower(){
   return(
     <section className="flowers">
       {/* <p className="counter">Counter: {count}</p> */}
-      <button className="cl1" onClick={handleIncrement}>Increment</button>
+      <button className="cl1" onClick={handleIncrement}>獻花</button>
       <button className="cl2" onClick={handleReset}>Reset</button>
       {count >= 10 && (
         <>
@@ -253,6 +259,7 @@ function Flower(){
 }
 function Music(){
   const [hovered, setHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -267,8 +274,16 @@ function Music(){
     audio.play();
   };
 
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return(
-    <div className="playmusic">
+    <>
+    <button className="toggle-button" onClick={toggleVisibility}>
+      聽佛經
+    </button>
+    <div className={`playmusic ${isVisible ? 'visible' : ''}`}>
       <img className="god" src="./picture/god.png"/>
       <p></p>
       <audio className="musicbox" src="./music/music_1.mp3" controls></audio>
@@ -281,8 +296,9 @@ function Music(){
       >
         <img className="bell" src="./picture/bell.png" alt="A" />
       </div>
+    </div>    
+    </>
 
-    </div>
   );
 }
 
@@ -326,7 +342,7 @@ function About ({children}){
       {children ? children.urn_texture_src : 'Loading...'}
       </p>
       <p id="d2">逝世</p>
-      <p id="d1">預估2024年5月17日</p>
+      <p id="d1">{children ? children.death_date : 'Loading...'}</p>
       <p id="d2">死亡詳情</p>
       <p id="d1">{children ? children.last_live_city : 'Loading...'}</p>
     </section>
