@@ -44,3 +44,10 @@ model Gallery {
   morgue    Morgue   @relation(fields: [morgueId], references: [id])
   image     String
 }
+
+model Urn {
+  id     String @id @default(cuid())
+  link   String
+  person String
+  urn    String
+}

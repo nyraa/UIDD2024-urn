@@ -59,10 +59,10 @@ function ActionLink({ title, line1, line2, href }) {
 function CategorySection() {
     return (
         <section className="category-section">
-            <Category name="年齡" href="#" />
-            <Category name="地區" href="#" />
-            <Category name="史事" href="#" />
-            <MoreCategory name="更多類別" href="#" />
+            <Category name="年齡" href="/search" />
+            <Category name="地區" href="/search" />
+            <Category name="史事" href="/search" />
+            <MoreCategory name="更多類別" href="/search" />
         </section>
     );
 }
@@ -87,7 +87,7 @@ function DieToday() {
     return (
         <section className="die-today">
             <Avatar src="assets/person1.png" />
-            <Avatar src="assets/person2.png" />
+            <Avatar src="https://truth.bahamut.com.tw/s01/201807/b1b13f9ab2d3ba0d1aa4e4ad64894c40.JPG" />
             <Avatar src="assets/person3.png" />
         </section>
     );

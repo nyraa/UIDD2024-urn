@@ -1,0 +1,91 @@
+.search-container 
+  width: 100%
+  position: relative 
+  background-color: #615c5c
+  top: 15vh
+  border-radius: 10px
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+
+.search-box 
+  display: flex
+  align-items: center
+  width: 100%
+  position: relative
+  border: 1px solid #ccc
+  border-radius: 10px 10px 
+ 
+.search-bar 
+  flex-grow: 1
+  padding: 10px 40px 10px 10px /* 增加右邊的填充來容納按鈕 */
+  border: 1px solid transparent /* 設置邊界為透明 */
+  border-radius: 5px
+
+
+.search-button 
+  position: absolute 
+  right: 10px
+  top:50%
+  transform: translateY(-50%) 
+  border: none
+  font-size: 20px
+  background: none
+  cursor: pointer
+
+.tags-container 
+  margin-top: 20px 
+  padding: 10px 0 
+  border-top: 1px solid #ccc 
+  border-radius: 10px 10px 
+  background: #f0f0f0 
+
+.selected-tags 
+  display: flex 
+  flex-wrap: wrap 
+  gap: 10px 
+
+.tag 
+  background-color: #eee 
+  padding: 5px 10px 
+  border-radius: 20px 
+  display: flex 
+  align-items: center 
+
+.remove-tag 
+  background: none 
+  border: none 
+  margin-left: 5px 
+  cursor: pointer 
+
+.expandable-tags 
+  display: none 
+  margin-top: 20px 
+
+  &.expanded 
+    display: block 
+  
+
+.popular-tags .title 
+  font-weight: bold 
+
+.tags 
+  display: flex 
+  flex-wrap: wrap 
+  gap: 10px 
+  margin-top: 10px 
+
+.expand-button 
+  background: none 
+  border: none 
+  cursor: pointer 
+  display: block 
+  margin: 10px auto 0 
+
+.all-tags 
+  margin-top: 20px 
+
+.search-more-tags 
+  width: 100% 
+  padding: 10px 
+  border: 1px solid #ccc 
+  border-radius: 5px 
+  margin-bottom: 10px 
