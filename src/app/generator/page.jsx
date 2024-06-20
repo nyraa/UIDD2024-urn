@@ -8,14 +8,15 @@ import Form2 from "./Form2"
 import PopupHelper from "./PopupHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "@app/context/AuthContext";
 
 export default function GeneratorPage() {
-    const debug_owner_id = "clxnhadhu0000i8gftwklh8xw";
+    const { isLogin, username, useremail, userid, login, logout } = useAuth();
     const [stage, setStage] = useState(0);
     const [popup, setPopup] = useState(false);
     const [formData, setFormData] = useState({
         id:"",
-        ownerId: debug_owner_id, // 假設已經有用戶的 ID
+        ownerId: userid, // 假設已經有用戶的 ID
         golden_quote: "",
         cover_src: "",
         urn_index: 0,
@@ -89,7 +90,7 @@ export default function GeneratorPage() {
                 <Header stage={stage} setStage={setStage} />
                 {stage == 1 && <Form1 setPopup={setPopup} formData={formData} setFormData={setFormData} handleUpload={handleUpload} />}
                 {stage == 2 && <Form2 />}
-                {stage > 0 && <Navigation stage={stage} setStage={setStage} saveDraft={save_urn}/>}
+                {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
             </div>
             {popup && <PopupHelper setPopup={setPopup} />}
         </>
