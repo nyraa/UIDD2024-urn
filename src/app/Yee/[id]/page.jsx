@@ -52,7 +52,7 @@ export default  function Finalpage({ params }) {
             <About children={data}/>
             <Slidepicture galleries={data?.gallery}/>
             <Story children={data}/>
-
+            <AIchat/>
         </>
     );
 
@@ -417,4 +417,8 @@ function Slidepicture({ galleries }){
     </div>
   );
 }
-
+function AIchat(){
+  return(
+    <script src="https://www.socialintents.com/api/chat/socialintents.1.3.js#2c9fa6c390198b720190374400f919a0" async="async"></script>
+  )
+}
