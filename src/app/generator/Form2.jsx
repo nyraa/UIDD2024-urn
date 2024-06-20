@@ -12,6 +12,35 @@ export default function Form2({ onChange=() => {}}) {
     const [prompt, setPrompt] = useState("");
     const [select, setSelect] = useState(0);
     const [textureSrc, setTextureSrc] = useState("");
+    const [generatePending, setGeneratePending] = useState(false);
+    function generate()
+    {
+        if(generatePending)
+        {
+            return;
+        }
+        if(!prompt)
+        {
+            return;
+        }
+        setGeneratePending(true);
+        fetch("/api/generate_image", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                prompt
+            })
+        }).then((res) => res.json()).then((data) => {
+            console.log(data);
+            setTextureSrc("/api/image_proxy?path=" + data.images[0]);
+            setGeneratePending(false);
+        }).catch((e) => {
+            console.error(e);
+            setGeneratePending(false);
+        });
+    }
     useEffect(() => {
         console.log(select);
     }, [select]);
@@ -24,7 +53,7 @@ export default function Form2({ onChange=() => {}}) {
                     </textarea>
                     <h2>選擇骨灰罈外型</h2>
                     <UrnSelector select={select} count={5} setSelect={(i) => setSelect(i)} />
-                    <Button>生成</Button>
+                    <Button onClick={generate}>生成</Button>
                 </div>
                 <div className="preview">
                     <Urn objIndex={select} key="urnpreview" textureSrc={textureSrc} preview={true} />
