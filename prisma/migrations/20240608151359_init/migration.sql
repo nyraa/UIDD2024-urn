@@ -42,5 +42,14 @@ CREATE TABLE "Gallery" (
     CONSTRAINT "Gallery_morgueId_fkey" FOREIGN KEY ("morgueId") REFERENCES "Morgue" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- CreateTable
+CREATE TABLE "Urn" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "link" TEXT NOT NULL,
+    "person" TEXT NOT NULL,
+    "urn" TEXT NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+

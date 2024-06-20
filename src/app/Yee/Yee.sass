@@ -1,0 +1,236 @@
+@font-face 
+    font-family: "ChenYuluoyan"
+    src: url("/ChenYuluoyanThinMonospaced.ttf")format("truetype"),
+
+.backgrounds
+    .back1
+        z-index: -1
+        height: auto
+        max-width: 100%
+        width: 100vw
+        position: absolute
+        overflow-y: visible
+        overflow-x: hidden
+        scroll-snap-align: start
+        top: 0px
+    .back2
+        height: auto 
+        max-width: 100%
+        width: 100vw
+        position: absolute
+        left: 0px
+        z-index: 6
+    .mountain
+        height: auto 
+        max-width: 100%
+        width: 100vw
+        position: absolute
+        left: 0px
+        z-index: 5
+    .back3
+        z-index: -5
+        position: fixed
+        background: #1F2C44
+        max-width: 100%
+        width: 100vw
+        height: 100vh
+        bottom: 0
+        overflow-y: visible
+        overflow-x: hidden
+        @media screen and (min-width: 1630px)
+            height: 900vh
+        @media screen and (max-width: 800px)
+            height: 300vh
+    .cloud
+        z-index: 1
+        height: auto
+        max-width: 100%
+        width: 100vw
+        top: 0px
+        position: absolute
+        left: 0px
+.goldenword
+    z-index: 7
+    position: relative
+    padding-top: 10vh
+    display:flex
+    text-align: center
+    p
+        font-family: "ChenYuluoyan"
+        font-style: normal
+        font-weight: 100
+        font-size: 5vw
+
+
+.photoshot
+    position:relative
+    justify-content: center
+    align-items: center
+    padding-top:30vh
+    padding-bottom:50vh
+    .picture
+        .people
+            z-index: 4
+            height: auto
+            width: 20vw
+            margin-top:-25vh
+            position: absolute
+            left: 50% 
+            transform: translateX(-50%) 
+        .behind-people
+            z-index: 3
+            width: 100vw
+            max-width: 100%
+            margin-top:60vh
+            position: absolute
+            top: 50% 
+            left: 50% 
+            transform: translate(-50%, -50%)
+
+.bonebox
+    position:relative
+    margin: 10vh
+    height: 20vh
+    .box
+        z-index: 6
+        height: auto
+        width: 15vw
+        margin-top:10vh
+        position: absolute
+        left: 50% 
+        transform: translateX(-50%) 
+    .behind-box
+        z-index: 5
+        width: 20vw
+        position: absolute
+        margin-top:38vh
+        left: 50% 
+        transform: translate(-50%)  
+
+.smoke
+    position: absolute
+    left: 50% 
+    transform: translateX(-50%)
+    display: flex
+    justify-content: center
+    align-items: center        
+    z-index: 6
+    .xianglu
+        position: absolute
+        top: 0vh
+        width: 20vw
+            
+
+
+.name
+    z-index: 7
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    text-align: center
+    height: auto
+    max-width: 100%
+    width: 100vw
+    left: 50% 
+    transform: translateX(-50%) 
+    .n1
+        font-family: 'Zen Antique Soft'
+        font-style: normal
+        font-weight: 400
+        color: #FFFFFF
+        font-size: 5vw
+        margin-top:40px 
+        margin-bottom:20px 
+    .n2
+        font-family: 'Zen Antique Soft'
+        font-style: normal
+        font-weight: 400
+        color: #CDC2BF
+        font-size: 2vw
+        margin: 3px 0px
+    .n-line
+        background-color:#7B7B7B
+        height: 2px
+        width: 30vw
+        margin-top: 1vh
+        margin-bottom: 1vh
+    .like
+        margin-top: 10px
+        z-index: 7
+        height: auto
+        width: 25vw
+        display: flex
+        justify-content: center
+        align-items: center
+        .ic
+            height: auto
+            width:  2.5vw
+            margin-right: 0.5vw
+            margin-left: 0.5vw
+.detail
+    position: relative
+    margin-bottom: 5vh
+    z-index: 7
+    text-align: center
+    width: 55vw
+    height: auto + 5vh
+    left: 50% 
+    transform: translateX(-50%) 
+    padding-top: 5vh
+    p#d1
+        font-family: 'Zen Kaku Gothic Antique'
+        font-style: normal
+        font-weight: 400
+        color: #E8E8E9
+        font-size: 1.5vw
+        margin-top:5px
+    p#d2
+        font-family: 'Zen Kaku Gothic Antique'
+        font-style: normal
+        font-weight: 600
+        color: #E8E8E9
+        font-size: 2vw
+        margin-top: 6vh
+        margin-bottom: 5px
+
+.mainstory
+    position: relative
+    z-index: 7
+    margin-bottom:5vh
+    width: 60vw
+    height: auto + 10vh
+    left: 50% 
+    transform: translateX(-50%) 
+    margin-top: 5vh
+    padding-bottom:5vh
+    .s1
+        font-family: 'Zen Antique Soft'
+        font-style: normal
+        font-weight: 600
+        color: #A78E87
+        font-size: 3vw
+        text-align: center
+        margin-top: 8vh
+    .s2
+        font-family: 'Zen Antique Soft'
+        font-family: 'Zen Kaku Gothic Antique'
+        color: #E8E8E9
+        font-size: 1.5vw       
+.slidepicture
+    position: relative
+    margin-bottom: 5vh
+    z-index: 7
+    max-width: 100%
+    width: 50vw
+    left: 50% 
+    transform: translateX(-50%) 
+    .wrap
+        outline: none
+        img
+            height: auto
+            max-width: 100%
+            width: 100vw
+
+

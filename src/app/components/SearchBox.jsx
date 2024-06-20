@@ -5,10 +5,12 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 export default function SearchBox() {
     return (
         <div className="search-box">
-            <input type="text" placeholder="搜尋逝者姓名" />
-            <button>
-                <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />
-            </button>
+            <a href="/search" >
+                <input type="text" placeholder="搜尋逝者姓名" />
+                <button>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />
+                </button>
+            </a>
         </div>
     );
 };
