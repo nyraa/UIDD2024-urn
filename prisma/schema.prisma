@@ -36,6 +36,7 @@ model Morgue {
   last_live_city String
   life_story    String
   gallery       Gallery[]
+  is_draft      Boolean
 }
 
 model Gallery {

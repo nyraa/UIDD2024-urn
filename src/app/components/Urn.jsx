@@ -34,7 +34,7 @@ const urns = [
 export default function Urn({ objIndex, textureSrc })
 {
     const meshRef = useRef();
-    const obj = useLoader(OBJLoader, urns[objIndex].objSrc);
+    let obj = useLoader(OBJLoader, urns[objIndex].objSrc).clone();
     if(textureSrc !== undefined)
     {
         const texture = useLoader(TextureLoader, textureSrc);
@@ -84,7 +84,7 @@ function CameraContrls({ hover })
             friction: 60
         }
     });
-    console.log(polarAngle.get());
+    // console.log(polarAngle.get());
     const { camera, gl, scene } = useThree();
     const controlRef = useRef();
     useEffect(() => {

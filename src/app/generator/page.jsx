@@ -13,11 +13,27 @@ import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-s
 export default function GeneratorPage() {
     const [stage, setStage] = useState(0);
     const [popup, setPopup] = useState(false);
+    let morgue = {};
+    function onChange(key, value) {
+        morgue[key] = value;
+    }
+
+    function save_urn() {
+        fetch("/api/save_urn", {
+            method: "POST",
+            body: JSON.stringify({ data: morgue }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((res) => res.json()).then((data) => {
+            morgue = data;
+        });
+    }
 
     useEffect(() => {
         if(stage >= 4)
         {
-            window.location.href = "/bonelast/main.html";
+            save_urn();
         }
     }, [stage]);
 
@@ -26,9 +42,9 @@ export default function GeneratorPage() {
             <Nav title={true} />
             <div className={`generator ${stage >= 1 && stage <= 2 ? "wave-bg" : ""}`}>
                 <Header stage={stage} setStage={setStage} />
-                {stage == 1 && <Form1 setPopup={setPopup} />}
+                {stage == 1 && <Form1 setPopup={setPopup} onChange={onChange} />}
                 {stage == 2 && <Form2 />}
-                {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
+                {stage > 0 && <Navigation stage={stage} setStage={setStage} saveDraft={save_urn}/>}
             </div>
             {popup && <PopupHelper setPopup={setPopup} />}
         </>
@@ -101,12 +117,12 @@ function Stage({ stage, targetStage }) {
     );
 }
 
-function Navigation({ stage, setStage }) {
+function Navigation({ stage, setStage, saveDraft }) {
     return (
         <div className="navigation">
             <button className="prev" onClick={() => setStage(stage - 1)}><FontAwesomeIcon icon={faArrowLeft} />　上一步</button>
-            <button className="save"><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
-            <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
+            <button className="save" onClick={saveDraft}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
+            <button className="next" onClick={() => setStage(stage + 1)}>{stage >= 4 ? "送出" : "下一步"}　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );
 }
