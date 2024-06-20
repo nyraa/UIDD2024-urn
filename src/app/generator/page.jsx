@@ -75,6 +75,10 @@ export default function GeneratorPage() {
         if(stage >= 4)
         {
             // upload
+            formData.is_draft = false;
+            handleUpload().then(() => {
+                window.location.href = `/urn/${formData.id}`;
+            });
         }
     }, [stage]);
 
