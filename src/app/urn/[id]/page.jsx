@@ -375,9 +375,6 @@ function About ({children}){
 
   return(
     <section className="detail"  >
-      <p id="d1">
-      {children ? children.urn_texture_src : 'Loading...'}
-      </p>
       <p id="d2">逝世</p>
       <p id="d1">{formatDate(children?.born_date)}</p>
       <p id="d2">死亡詳情</p>
