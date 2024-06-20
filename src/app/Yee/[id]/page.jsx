@@ -3,6 +3,7 @@ import Nav from "@app/components/Nav";
 import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 import React, { useEffect, useState, useRef } from 'react';
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -51,6 +52,7 @@ export default  function Finalpage({ params }) {
             <About children={data}/>
             <Slidepicture galleries={data?.gallery}/>
             <Story children={data}/>
+
         </>
     );
 
@@ -126,6 +128,7 @@ function Bonebox(){
     </section>
   );
 }
+
 function Morgueitems(){
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -238,8 +241,6 @@ return(
 
 )
 };
-
-
 function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
   return (
     <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }}>
@@ -255,7 +256,6 @@ function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
     </section>
   );
 }
-
 function Flower({ count }){
 
   return(
@@ -302,7 +302,7 @@ function Music({musictrigger}){
       <audio className="musicbox" src="/music/music_1.mp3" controls></audio>
       <div
         className="bellcontainer"
-        style={{ cursor: hovered ? `url("/picture/fb.png"), auto` : 'auto' }}
+        style={{ cursor: hovered ? `url("/picture/bellstick.png"), auto` : 'auto' }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
@@ -314,8 +314,6 @@ function Music({musictrigger}){
 
   );
 }
-
-
 
 function Goldenword({children}){
     return(
@@ -419,3 +417,4 @@ function Slidepicture({ galleries }){
     </div>
   );
 }
+
