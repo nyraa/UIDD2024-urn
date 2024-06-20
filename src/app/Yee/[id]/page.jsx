@@ -129,18 +129,63 @@ function Bonebox(){
 }
 function Morgueitems(){
   const [isExpanded, setIsExpanded] = useState(false);
-  const [triggerChildren, setTriggerChildren] = useState(false);
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [showImages, setShowImages] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(60);
+  const intervalRef = useRef(null);
+
   const [count, setCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  
   const [IsVisibility, setIsVisibility] = useState(false);
-//香爐
-  const handleParentButtonClick = () => {
-    setTriggerChildren(true);
-  };
 //展開
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+
+//香爐
+const handleParentButtonClick = () => {
+  setIsButtonClicked(true); // 设置按钮点击状态为 true
+};
+
+const handleImageAClick = () => {
+  if (isButtonClicked) {
+    setShowImages(true);
+    setIsButtonClicked(false);
+    if (!intervalRef.current) {
+      startTimer();
+    }
+  } else if (showImages && intervalRef.current) {
+    alert(`Remaining time: ${remainingTime} seconds`);
+  }
+};
+
+const startTimer = () => {
+  intervalRef.current = setInterval(() => {
+    setRemainingTime((prev) => {
+      if (prev === 1) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+        setShowImages(false);
+        return 60;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+};
+
+useEffect(() => {
+  return () => {
+    clearInterval(intervalRef.current);
+  };
+}, []);
+
+
+
+
+
 
 //獻花
   useEffect(() => {
@@ -181,88 +226,109 @@ return(
     <button className="toggle-button" onClick={toggleVisibility}>
       聽佛經
     </button>
-    <p>hello world</p>
   </div>
   <button className="expand-button" onClick={toggleExpand}>
       {isExpanded ? '⬆' : '⬇'}
   </button>  
-    <Smoke trigger={triggerChildren}/>
+    <Smoke
+      isButtonClicked={isButtonClicked}
+      showImages={showImages}
+      handleImageAClick={handleImageAClick}
+    />
     <Flower count={count}/>
     <Music musictrigger={IsVisibility}/>    
   </>
 
 )
 };
-function Smoke({trigger}){
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [showImages, setShowImages] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(60);
-  const intervalRef = useRef(null);
+// function Smoke({trigger}){
+//   const [isButtonClicked, setIsButtonClicked] = useState(false);
+//   const [showImages, setShowImages] = useState(false);
+//   const [remainingTime, setRemainingTime] = useState(60);
+//   const intervalRef = useRef(null);
 
-  // 點擊按鈕變更滑鼠形狀
-  useEffect(() => {
-    if (trigger) {
-      setIsButtonClicked(true);
-    }
-  }, [trigger]);
+//   // 點擊按鈕變更滑鼠形狀
+//   useEffect(() => {
+//     if (trigger) {
+//       setIsButtonClicked(true);
+//     }
+//   }, [trigger]);
 
-  // const handleButtonClick = () => {
-  //   setIsButtonClicked(true);
-  // };
+//   // const handleButtonClick = () => {
+//   //   setIsButtonClicked(true);
+//   // };
 
-  // 點擊圖片 A 顯示圖片 B, C 和 D 並開始計時，或者顯示剩餘時間
-  const handleImageAClick = () => {
-    if (isButtonClicked) {
-      setShowImages(true);
-      setIsButtonClicked(false);
-      if (!intervalRef.current) {
-        startTimer();
-      }
-    } else if (showImages && intervalRef.current) {
-      alert(`Remaining time: ${remainingTime} seconds`);
-    }
-  };
+//   // 點擊圖片 A 顯示圖片 B, C 和 D 並開始計時，或者顯示剩餘時間
+//   const handleImageAClick = () => {
+//     if (isButtonClicked) {
+//       setShowImages(true);
+//       setIsButtonClicked(false);
+//       if (!intervalRef.current) {
+//         startTimer();
+//       }
+//     } else if (showImages && intervalRef.current) {
+//       alert(`Remaining time: ${remainingTime} seconds`);
+//     }
+//   };
 
-  // 開始計時
-  const startTimer = () => {
-    intervalRef.current = setInterval(() => {
-      setRemainingTime((prev) => {
-        if (prev === 1) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
-          setShowImages(false);
-          return 60;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
+//   // 開始計時
+//   const startTimer = () => {
+//     intervalRef.current = setInterval(() => {
+//       setRemainingTime((prev) => {
+//         if (prev === 1) {
+//           clearInterval(intervalRef.current);
+//           intervalRef.current = null;
+//           setShowImages(false);
+//           return 60;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+//   };
 
-  // 清理計時器
-  useEffect(() => {
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-  }, []);
+//   // 清理計時器
+//   useEffect(() => {
+//     return () => {
+//       clearInterval(intervalRef.current);
+//     };
+//   }, []);
 
-  return(
-    <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }} >
-       {/* <button onClick={handleButtonClick} className="click">上香</button> */}
-       <div  onClick={handleImageAClick} >
-        <div onClick={handleImageAClick}>
-          <img className="xianglu" src="/picture/xianglu.png"/>
-        </div>
-      {showImages && (
-        <>
-        <img className="image_b" src="/picture/xiang.png" alt="Image B" />
-        <img className="image_c" src="/picture/Ellipse 38.png" alt="Image C" />
-        <img className="image_d" src="/picture/Ellipse 38.png" alt="Image D" />
-        </>
-      )}
+//   return(
+//     <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }} >
+//        {/* <button onClick={handleButtonClick} className="click">上香</button> */}
+//        <div  onClick={handleImageAClick} >
+//         <div onClick={handleImageAClick}>
+//           <img className="xianglu" src="/picture/xianglu.png"/>
+//         </div>
+//       {showImages && (
+//         <>
+//         <img className="image_b" src="/picture/xiang.png" alt="Image B" />
+//         <img className="image_c" src="/picture/Ellipse 38.png" alt="Image C" />
+//         <img className="image_d" src="/picture/Ellipse 38.png" alt="Image D" />
+//         </>
+//       )}
+//       </div>
+//     </section>
+//   );
+// }
+
+function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
+  return (
+    <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }}>
+      <div onClick={handleImageAClick}>
+        <img className="xianglu" src="/picture/xianglu.png" />
+        {showImages && (
+          <>
+            <img className="image_b" src="/picture/xiang.png" alt="Image B" />
+            <img className="image_c" src="/picture/Ellipse 38.png" alt="Image C" />
+            <img className="image_d" src="/picture/Ellipse 38.png" alt="Image D" />
+          </>
+        )}
       </div>
     </section>
   );
 }
+
 function Flower({ count }){
   // const [count, setCount] = useState(0);
   // const [isClient, setIsClient] = useState(false);
