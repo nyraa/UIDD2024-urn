@@ -10,23 +10,23 @@ import * as THREE from "three";
 
 const urns = [
     {
-        objSrc: "bottles/1.obj",
+        objSrc: "/bottles/1.obj",
         scale: 12
     },
     {
-        objSrc: "bottles/CAN-001.obj",
+        objSrc: "/bottles/CAN-001.obj",
         scale: 5
     },
     {
-        objSrc: "bottles/round-can-001.obj",
+        objSrc: "/bottles/round-can-001.obj",
         scale: 10
     },
     {
-        objSrc: "bottles/round-jar-001.obj",
+        objSrc: "/bottles/round-jar-001.obj",
         scale: 7.5
     },
     {
-        objSrc: "bottles/wine-bottle-007.obj",
+        objSrc: "/bottles/wine-bottle-007.obj",
         scale: 3
     }
 ]
