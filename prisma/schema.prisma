@@ -12,13 +12,57 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-model Post {
-  id          String   @id
-  title       String
-  description String
-  categories  String
-  picture     String
-  author      String
-  content     String
-  date        DateTime @default(now())
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String  // hashed
+  morgues   Morgue[]
+}
+
+model Morgue {
+  id            String   @id @default(cuid())
+  ownerId       String
+  owner         User     @relation(fields: [ownerId], references: [id])
+  golden_quote  String
+  cover_src     String
+  urn_index     Int
+  urn_texture_src String
+  name          String
+  title         String
+  born_date     String  // iso 8601
+  born_calendar String  // iso 8601
+  death_date    String
+  death_calendar String
+  last_live_city String
+  life_story    String
+  gallery       Gallery[]
+  prompt        Prompt[]
+}
+model Prompt {
+  id        String   @id @default(cuid())
+  promptId   String
+  prompter   Morgue   @relation(fields: [promptId], references: [id])
+  death_story String
+  person_features String
+  memorial_activity String
+  alive_family String
+  dead_family String
+  elementary_school String
+  middle_school String
+  high_school String
+  college String
+  graduate String
+  career   String
+  hobby    String
+  volunteer String
+  religion String
+}
+
+model Gallery {
+  id        String   @id @default(cuid())
+  morgueId  String
+  morgue    Morgue   @relation(fields: [morgueId], references: [id])
+  image     String
 }

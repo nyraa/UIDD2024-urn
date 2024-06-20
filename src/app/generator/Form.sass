@@ -46,22 +46,34 @@
     text-align: center
     color: #7b7b7b
 
-.upload_cover 
-    position: relative
-    width: 180px    
-    height: 180px
-    text-align: center
-    cursor: pointer
-    background: #efefef
-    border: 1px solid #595656
+.upload-container 
+  width: 200px
+  height: 200px
+  border: 1px solid #ccc
+  display: flex
+  margin: 1vw
+  justify-content: center
+  align-items: center
+  position: relative
+.uploaded-image 
+  width: 100%
+  height: 100%
+  object-fit: cover /* 確保圖片覆蓋整個容器 */
+
+.upload-cover 
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
+  height: 100%
+  cursor: pointer
 
 .upload-btn 
-    display: none
-
-.upload_icon 
-    font-weight: bold
-    font-size: 180%
-    position: absolute
-    left: 0
-    width: 100%
-    top: 25%
+  display: none
+  width: 80%
+  height: 80%
+.form-section
+    .form-field
+        .row-ver
+            display: flex
+            flex-direction: row 
