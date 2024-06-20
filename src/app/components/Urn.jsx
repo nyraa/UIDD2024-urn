@@ -31,12 +31,16 @@ const urns = [
     }
 ]
 
-export default function Urn({ objIndex, textureSrc })
+export default function Urn({ objIndex, textureSrc, enableRotate = true, preview = false})
 {
     const meshRef = useRef();
     let obj = useLoader(OBJLoader, urns[objIndex].objSrc).clone();
-    if(textureSrc !== undefined)
+    try
     {
+        if(!textureSrc)
+        {
+            throw new Error("No texture");
+        }
         const texture = useLoader(TextureLoader, textureSrc);
         obj.traverse((child) => {
             if(child.isMesh)
@@ -45,7 +49,7 @@ export default function Urn({ objIndex, textureSrc })
             }
         });
     }
-    else
+    catch(e)
     {
         obj.traverse((child) => {
             if(child.isMesh)
@@ -56,7 +60,7 @@ export default function Urn({ objIndex, textureSrc })
     }
     const [ hover, setHover ] = useState(false);
     return (
-        <div className="urn-3d">
+        <div className={`urn-3d ${preview ? 'urn-preview' : ''}`}>
             <Canvas
                 onPointerOver={() => setHover(true)}
                 onPointerOut={() => setHover(false)}
@@ -69,13 +73,13 @@ export default function Urn({ objIndex, textureSrc })
                     scale={1}>
                     <primitive object={obj} scale={urns[objIndex].scale} position={[0, -0.4, 0]} />
                 </mesh>
-                <CameraContrls hover={hover} />
+                <CameraContrls hover={hover} enableRotate={enableRotate} />
             </Canvas>
         </div>
     );
 }
 
-function CameraContrls({ hover })
+function CameraContrls({ hover, enableRotate })
 {
     const { polarAngle } = useSpring({
         polarAngle: hover ? 2 * Math.PI / 8 : 3 * Math.PI / 8,
@@ -108,5 +112,6 @@ function CameraContrls({ hover })
         maxPolarAngle={3 * Math.PI / 8}
         enableZoom={false}
         enablePan={false}
+        enableRotate={enableRotate}
     />;
 }

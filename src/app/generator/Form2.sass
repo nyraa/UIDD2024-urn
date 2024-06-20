@@ -1,2 +1,39 @@
-.tmp_img
+.generator-section
     width: 80%
+    display: flex
+    background-color: #7f7f7f
+    border-radius: 30px
+    max-width: 1000px
+    padding: 45px
+    box-sizing: border-box
+    .prompt
+        max-width: 50%
+        textarea
+            outline: none
+            font-size: 24px
+            border: 0.8px solid #e6d690
+            border-radius: 12px
+            width: 100%
+            height: 200px
+            padding: 20px
+            box-sizing: border-box
+            background-color: #ebe8dcb7
+            resize: none
+        .urn-selector
+            display: flex
+            flex-wrap: wrap
+            .urn-option
+                background-color: black
+                border-radius: 12px
+                margin: 5px
+                padding: 5px
+                cursor: pointer
+                &.selected
+                    background-color: #C17447
+        .button
+            background-color: #C17447
+    .preview
+        flex-grow: 1
+        align-items: center
+        .urn-preview
+            height: 50%
