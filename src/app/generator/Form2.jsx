@@ -47,6 +47,10 @@ export default function Form2({ onChange=() => {}, formData, setFormData }) {
         console.log(select);
         setFormData({ ...formData, urn_index: select });
     }, [select]);
+    useEffect(() => {
+        setTextureSrc(formData.urn_texture_src);
+        setSelect(formData.urn_index);
+    }, []);
     return (
         <form className="form" onSubmit={(e) => e.preventDefault()}>
             <section className="generator-section">

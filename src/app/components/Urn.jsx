@@ -42,6 +42,7 @@ export default function Urn({ objIndex, textureSrc, enableRotate = true, preview
             throw new Error("No texture");
         }
         const texture = useLoader(TextureLoader, textureSrc);
+        console.log("texture updated");
         obj.traverse((child) => {
             if(child.isMesh)
             {
