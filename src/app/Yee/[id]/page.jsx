@@ -2,7 +2,6 @@
 import Nav from "@app/components/Nav";
 import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
-
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -159,7 +158,7 @@ const handleImageAClick = () => {
       startTimer();
     }
   } else if (showImages && intervalRef.current) {
-    alert(`Remaining time: ${remainingTime} seconds`);
+    alert(`剩下: ${remainingTime} 秒`);
   }
 };
 // 開始計時
@@ -249,8 +248,7 @@ function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
         {showImages && (
           <>
             <img className="image_b" src="/picture/xiang.png" alt="Image B" />
-            <img className="image_c" src="/picture/Ellipse 38.png" alt="Image C" />
-            <img className="image_d" src="/picture/Ellipse 38.png" alt="Image D" />
+
           </>
         )}
       </div>
@@ -262,15 +260,19 @@ function Flower({ count }){
 
   return(
     <section className="flowers">
-
-      {count >= 10 && (
+      {count >= 20 && (
         <>
           <img className="flower1" src="/picture/flower1.png" alt="Flower 1" />
-          <img className="flower2" src="/picture/flower2.png" alt="Flower 2" />
           <img className="flower4" src="/picture/flower4.png" alt="Flower 4" />
+        </>
+      )}
+      {count >= 10 && (
+        <>
+          <img className="flower2" src="/picture/flower2.png" alt="Flower 2" />
           <img className="flower3" src="/picture/flower3.png" alt="Flower 3" />
         </>
       )}
+
     </section>
 
   );
@@ -320,18 +322,22 @@ function Goldenword({children}){
         <div className = "goldenword"><p>{children ? children.golden_quote : 'Loading...'}</p></div>
     );
 };
- function Name({children}){
+function formatYear(isoDate) {
+  if (!isoDate) return '';
+  const date = new Date(isoDate);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，所以+1
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}`;
+}
 
-  // const borndate = new Date({children.born_date});
-  // const deathdate = new Date({children.death_date});
+function Name({children}){
 
-  // const bornyear = borndate.getFullYear();
-  // const deathyear = deathdate.getFullYear();
     return(
         <section className="name" >
           <p className="n1">{children ? children.name : 'Loading...'}</p>
           <p className="n2">{children ? children.title : 'Loading...'}</p>
-          <p className="n2">{children?.born_date}-{children?.death_date}</p>
+          <p className="n2">{formatYear(children?.born_date)} - {formatYear(children?.death_date)}</p>
           <Share/>
         </section>
     );
@@ -358,20 +364,23 @@ return(
   );
 }
 
-
+function formatDate(isoDate) {
+  if (!isoDate) return '';
+  const date = new Date(isoDate);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份從0開始，所以+1
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year} 年 ${month} 月 ${day} 日`;
+}
 function About ({children}){
-  // const deathdate = new Date(children.death_date);
 
-  // const year = deathdate.getFullYear();
-  // const month = date.getMonth() + 1;
-  // const day = date.getDate();
   return(
     <section className="detail"  >
       <p id="d1">
       {children ? children.urn_texture_src : 'Loading...'}
       </p>
       <p id="d2">逝世</p>
-      <p id="d1">{children?.death_date}</p>
+      <p id="d1">{formatDate(children?.born_date)}</p>
       <p id="d2">死亡詳情</p>
       <p id="d1">{children ? children.last_live_city : 'Loading...'}</p>
     </section>
