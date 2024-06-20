@@ -146,10 +146,11 @@ function Morgueitems(){
 
 
 //香爐
+// 點擊按鈕變更滑鼠形狀
 const handleParentButtonClick = () => {
-  setIsButtonClicked(true); // 设置按钮点击状态为 true
+  setIsButtonClicked(true); 
 };
-
+// 點擊圖片 A 顯示圖片 B, C 和 D 並開始計時，或者顯示剩餘時間
 const handleImageAClick = () => {
   if (isButtonClicked) {
     setShowImages(true);
@@ -161,7 +162,7 @@ const handleImageAClick = () => {
     alert(`Remaining time: ${remainingTime} seconds`);
   }
 };
-
+// 開始計時
 const startTimer = () => {
   intervalRef.current = setInterval(() => {
     setRemainingTime((prev) => {
@@ -175,16 +176,12 @@ const startTimer = () => {
     });
   }, 1000);
 };
-
+// 清理計時器
 useEffect(() => {
   return () => {
     clearInterval(intervalRef.current);
   };
 }, []);
-
-
-
-
 
 
 //獻花
@@ -197,21 +194,21 @@ useEffect(() => {
       }
     }
   }, []);
-
+//存獻花次數
   useEffect(() => {
     if (isClient) {
       localStorage.setItem('count', count.toString());
     }
   }, [count, isClient]);
-
+//增加獻花次數
   const handleIncrement = () => {
     setCount(prevCount => prevCount + 1);
   };
-
+//重設次數
   const handleReset = () => {
     setCount(0);
   };
-
+//播音樂
   const toggleVisibility = () => {
     setIsVisibility(!IsVisibility);
   };
@@ -221,6 +218,7 @@ return(
 
   <div className={`expandable-tags ${isExpanded ? 'expanded' : ''}`}>
     <button onClick={handleParentButtonClick} className="click">上香</button>
+    <p className="counter">獻花次數: {count}次</p>
     <button className="cl1" onClick={handleIncrement}>獻花</button>
     <button className="cl2" onClick={handleReset}>Reset</button>
     <button className="toggle-button" onClick={toggleVisibility}>
@@ -241,76 +239,7 @@ return(
 
 )
 };
-// function Smoke({trigger}){
-//   const [isButtonClicked, setIsButtonClicked] = useState(false);
-//   const [showImages, setShowImages] = useState(false);
-//   const [remainingTime, setRemainingTime] = useState(60);
-//   const intervalRef = useRef(null);
 
-//   // 點擊按鈕變更滑鼠形狀
-//   useEffect(() => {
-//     if (trigger) {
-//       setIsButtonClicked(true);
-//     }
-//   }, [trigger]);
-
-//   // const handleButtonClick = () => {
-//   //   setIsButtonClicked(true);
-//   // };
-
-//   // 點擊圖片 A 顯示圖片 B, C 和 D 並開始計時，或者顯示剩餘時間
-//   const handleImageAClick = () => {
-//     if (isButtonClicked) {
-//       setShowImages(true);
-//       setIsButtonClicked(false);
-//       if (!intervalRef.current) {
-//         startTimer();
-//       }
-//     } else if (showImages && intervalRef.current) {
-//       alert(`Remaining time: ${remainingTime} seconds`);
-//     }
-//   };
-
-//   // 開始計時
-//   const startTimer = () => {
-//     intervalRef.current = setInterval(() => {
-//       setRemainingTime((prev) => {
-//         if (prev === 1) {
-//           clearInterval(intervalRef.current);
-//           intervalRef.current = null;
-//           setShowImages(false);
-//           return 60;
-//         }
-//         return prev - 1;
-//       });
-//     }, 1000);
-//   };
-
-//   // 清理計時器
-//   useEffect(() => {
-//     return () => {
-//       clearInterval(intervalRef.current);
-//     };
-//   }, []);
-
-//   return(
-//     <section className="smoke" style={{ cursor: isButtonClicked ? 'url("/picture/littlexiang.png"), auto' : 'default' }} >
-//        {/* <button onClick={handleButtonClick} className="click">上香</button> */}
-//        <div  onClick={handleImageAClick} >
-//         <div onClick={handleImageAClick}>
-//           <img className="xianglu" src="/picture/xianglu.png"/>
-//         </div>
-//       {showImages && (
-//         <>
-//         <img className="image_b" src="/picture/xiang.png" alt="Image B" />
-//         <img className="image_c" src="/picture/Ellipse 38.png" alt="Image C" />
-//         <img className="image_d" src="/picture/Ellipse 38.png" alt="Image D" />
-//         </>
-//       )}
-//       </div>
-//     </section>
-//   );
-// }
 
 function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
   return (
@@ -330,39 +259,10 @@ function Smoke({ isButtonClicked, showImages, handleImageAClick }) {
 }
 
 function Flower({ count }){
-  // const [count, setCount] = useState(0);
-  // const [isClient, setIsClient] = useState(false);
-
-  // useEffect(() => {
-  //   // 確認這段程式碼在瀏覽器中運行
-  //   setIsClient(true);
-  //   if (typeof window !== 'undefined') {
-  //     const savedCount = localStorage.getItem('count');
-  //     if (savedCount !== null) {
-  //       setCount(parseInt(savedCount, 10));
-  //     }
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (isClient) {
-  //     localStorage.setItem('count', count);
-  //   }
-  // }, [count, isClient]);
-
-  // const handleIncrement = () => {
-  //   setCount(prevCount => prevCount + 1);
-  // };
-
-  // const handleReset = () => {
-  //   setCount(0);
-  // };
 
   return(
     <section className="flowers">
-      <p className="counter">Counter: {count}</p>
-      {/* <button className="cl1" onClick={handleIncrement}>獻花</button>
-      <button className="cl2" onClick={handleReset}>Reset</button> */}
+
       {count >= 10 && (
         <>
           <img className="flower1" src="/picture/flower1.png" alt="Flower 1" />
@@ -377,7 +277,7 @@ function Flower({ count }){
 }
 function Music({musictrigger}){
   const [hovered, setHovered] = useState(false);
-  // const [isVisible, setIsVisible] = useState(false);
+  
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -392,20 +292,8 @@ function Music({musictrigger}){
     audio.play();
   };
 
-  // const toggleVisibility = () => {
-  //   setIsVisible(!isVisible);
-  // };
-  // useEffect(() => {
-  //   if (musictrigger) {
-  //     setIsVisible(!isVisible);
-  //   }
-  // }, [musictrigger]);
-
   return(
     <>
-    {/* <button className="toggle-button" onClick={toggleVisibility}>
-      聽佛經time
-    </button> */}
     <div className={`playmusic ${musictrigger ? 'visible' : ''}`}>
       <img className="god" src="/picture/god.png"/>
       <p></p>
@@ -434,11 +322,16 @@ function Goldenword({children}){
 };
  function Name({children}){
 
+  // const borndate = new Date({children.born_date});
+  // const deathdate = new Date({children.death_date});
+
+  // const bornyear = borndate.getFullYear();
+  // const deathyear = deathdate.getFullYear();
     return(
         <section className="name" >
           <p className="n1">{children ? children.name : 'Loading...'}</p>
           <p className="n2">{children ? children.title : 'Loading...'}</p>
-          <p className="n2">{children ? children.born_date : 'Loading...'}-{children ? children.death_date : 'Loading...'}</p>
+          <p className="n2">{children?.born_date}-{children?.death_date}</p>
           <Share/>
         </section>
     );
@@ -467,13 +360,18 @@ return(
 
 
 function About ({children}){
+  // const deathdate = new Date(children.death_date);
+
+  // const year = deathdate.getFullYear();
+  // const month = date.getMonth() + 1;
+  // const day = date.getDate();
   return(
     <section className="detail"  >
       <p id="d1">
       {children ? children.urn_texture_src : 'Loading...'}
       </p>
       <p id="d2">逝世</p>
-      <p id="d1">{children ? children.death_date : 'Loading...'}</p>
+      <p id="d1">{children?.death_date}</p>
       <p id="d2">死亡詳情</p>
       <p id="d1">{children ? children.last_live_city : 'Loading...'}</p>
     </section>
