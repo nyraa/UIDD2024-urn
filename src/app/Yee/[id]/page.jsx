@@ -419,6 +419,6 @@ function Slidepicture({ galleries }){
 }
 function AIchat(){
   return(
-    <script src="https://www.socialintents.com/api/chat/socialintents.1.3.js#2c9fa6c390198b720190374400f919a0" async="async"></script>
-  )
+    <iframe className="aichat"  allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/c3390601-f5cc-49f4-9c08-c08b4c288fe9"></iframe>
+    )
 }
