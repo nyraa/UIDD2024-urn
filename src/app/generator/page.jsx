@@ -73,6 +73,14 @@ export default function GeneratorPage() {
     }
 
     useEffect(() => {
+        if(stage >= 1)
+        {
+            if(!isLogin)
+            {
+                console.log("User not logged in.");
+                window.location.href = "/login";
+            }
+        }
         if(stage >= 4)
         {
             // upload
