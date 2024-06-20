@@ -176,7 +176,7 @@ function Navigation({ stage, setStage, handleUpload }) {
         <div className="navigation">
             <button className="prev" onClick={() => setStage(stage - 1)}><FontAwesomeIcon icon={faArrowLeft} />　上一步</button>
             <button className="save" onClick={handleUpload}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
-            <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
+            <button className="next" onClick={() => setStage(stage + 1)}>{stage >= 3 ? "發布" : "下一步"}　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );
 }

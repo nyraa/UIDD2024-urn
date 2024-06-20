@@ -69,9 +69,9 @@ export default function Form2({ onChange=() => {}, formData, setFormData }) {
                     <Urn objIndex={select} key="urnpreview" textureSrc={textureSrc} preview={true} />
                 </div>
             </section>
-            <FormSection title="生成紀錄">
+            {/* <FormSection title="生成紀錄">
                 
-            </FormSection>
+            </FormSection> */}
         </form>
     )
 }
