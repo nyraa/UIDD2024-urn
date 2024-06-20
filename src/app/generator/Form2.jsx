@@ -13,7 +13,7 @@ export default function Form2({ onChange=() => {}, formData, setFormData }) {
     const [select, setSelect] = useState(0);
     const [textureSrc, setTextureSrc] = useState("");
     const [generatePending, setGeneratePending] = useState(false);
-    function generate()
+    function generate(e)
     {
         if(generatePending)
         {
@@ -24,6 +24,7 @@ export default function Form2({ onChange=() => {}, formData, setFormData }) {
             return;
         }
         setGeneratePending(true);
+        e.target.classList.add("pending");
         fetch("/api/generate_image", {
             method: "POST",
             headers: {
@@ -38,9 +39,11 @@ export default function Form2({ onChange=() => {}, formData, setFormData }) {
             setTextureSrc(img_path);
             setFormData({ ...formData, urn_texture_src: img_path });
             setGeneratePending(false);
+            e.target.classList.remove("pending");
         }).catch((e) => {
             console.error(e);
             setGeneratePending(false);
+            e.target.classList.remove("pending");
         });
     }
     useEffect(() => {
