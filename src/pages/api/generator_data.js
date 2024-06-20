@@ -27,9 +27,7 @@ export default async function handler(req, res) {
                   last_live_city: data.last_live_city,
                   life_story: data.life_story,
                   gallery: {
-                      create: galleryData.map(image => ({
-                          image: image
-                      }))
+                      create: []
                   }
               },
               include: {
@@ -58,8 +56,9 @@ export default async function handler(req, res) {
                   life_story: data.life_story,
                   gallery: {
                       deleteMany: {}, // 先刪除舊的圖片
-                      create: galleryData.map(image => ({
-                          image: image
+                      create: galleryData.map(gallery => ({
+                        id: gallery.id,
+                          image: gallery.image
                       }))
                   }
               },

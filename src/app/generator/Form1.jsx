@@ -8,11 +8,12 @@ import {PrismaClient} from '@prisma/client';
 import { Effects } from "@react-three/drei";
 const prisma = new PrismaClient();
 
+
 export default function Form1({ onChange=() => {}, setPopup }) {
-    
+    const debug_owner_id = "clxnhadhu0000i8gftwklh8xw";
     const [formData, setFormData] = useState({
         id:"",
-        ownerId: "clxnhadhu0000i8gftwklh8xw", // 假設已經有用戶的 ID
+        ownerId: debug_owner_id, // 假設已經有用戶的 ID
         golden_quote: "",
         cover_src: "",
         urn_index: 0,
@@ -25,17 +26,46 @@ export default function Form1({ onChange=() => {}, setPopup }) {
         death_calendar: "solar",
         last_live_city: "",
         life_story: "",
-        gallery: [null, null, null]
+        gallery: [null, null, null],
+        is_draft: true
     });
 
     const [showPopup, setShowPopup] = useState(false);
     useEffect(() => {
-        if(formData.id === "")
-        {
-            handleSubmit();
-            console.log("save when pop shows: ", formData.id); // 在提交時輸出 
-        }
-    }, [showPopup]);
+        fetch("/api/get_draft_morgue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                ownerId: debug_owner_id
+            })
+        }).then((res) => {
+            if(!res.ok)
+            {
+                if(res.status === 404)
+                {
+                    console.log("No draft morgue found.");
+                    // create one
+                    handleSubmit();
+                }
+            }
+            else
+            {
+                res.json().then((data) => {
+                    if(data.id)
+                    {
+                        console.log("Draft morgue found:", data);
+                        setFormData(data);
+                    }
+                }).catch((error) => {
+                    console.error("Error decoding draft morgue:", error);
+                });
+            }
+        }).catch((error) => {
+                console.error("Error fetching draft morgue:", error);
+        });
+    }, []);
     
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -43,8 +73,9 @@ export default function Form1({ onChange=() => {}, setPopup }) {
     };
 
     const handleFileChange = (index, file) => {
-        const newGallery = [...formData.gallery];
-        newGallery[index] = URL.createObjectURL(file);
+        const newGallery = formData.gallery;
+        newGallery[index] = newGallery[index] ?? {};
+        newGallery[index].image = URL.createObjectURL(file);
         setFormData({ ...formData, gallery: newGallery });
         onChange("gallery", newGallery);
         console.log("Updated gallery:", newGallery); // 日誌輸出檢查
@@ -101,26 +132,26 @@ export default function Form1({ onChange=() => {}, setPopup }) {
         <form className="form" onSubmit={handleSubmit}>
             <FormSection title="基本資料">
                 <FormField label="姓名" column="1-2">
-                    <input type="text" onChange={(e) => handleInputChange("name", e.target.value)} />
+                    <input type="text" value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} />
                 </FormField>
                 <FormField label="稱謂/號稱" column="1-2">
-                    <input type="text" onChange={(e) => handleInputChange("last_live_city", e.target.value)} />
+                    <input type="text" value={formData.last_live_city} onChange={(e) => handleInputChange("last_live_city", e.target.value)} />
                 </FormField>
                 <FormField label="出生日期" column="2-3">
-                    <input type="date" onChange={(e) => handleInputChange("born_date", e.target.value)} />
+                    <input type="date" value={formData.born_date} onChange={(e) => handleInputChange("born_date", e.target.value)} />
                 </FormField>
                 <FormField column="1-3">
-                    <select onChange={(e) => handleInputChange("born_calendar", e.target.value)}>
+                    <select value={formData.born_calendar} onChange={(e) => handleInputChange("born_calendar", e.target.value)}>
                         <option value="none"> 選擇</option>
                         <option value="lunar">農曆</option>
                         <option value="solar">陽曆</option>
                     </select>
                 </FormField>
                 <FormField label="逝世日期" column="2-3">
-                    <input type="date" onChange={(e) => handleInputChange("death_date", e.target.value)} />
+                    <input value={formData.death_date} type="date" onChange={(e) => handleInputChange("death_date", e.target.value)} />
                 </FormField>
                 <FormField column="1-3">
-                    <select onChange={(e) => handleInputChange("death_calendar", e.target.value)}>
+                    <select value={formData.death_calendar} onChange={(e) => handleInputChange("death_calendar", e.target.value)}>
                         <option value="none"> 選擇</option>
                         <option value="lunar">農曆</option>
                         <option value="solar">陽曆</option>
@@ -132,6 +163,7 @@ export default function Form1({ onChange=() => {}, setPopup }) {
                 <FormField column="1-1">
                     <textarea
                         placeholder="將下表帶的生命故事，與世人分享..."
+                        value={formData.life_story}
                         onChange={(e) => handleInputChange("life_story", e.target.value)}
                     />
                     <button className="generate-helper" onClick={handleButtonClick}>
@@ -148,14 +180,14 @@ export default function Form1({ onChange=() => {}, setPopup }) {
 
             <FormSection title="個人金句">
                 <FormField column="1-1">
-                    <textarea placeholder="寫下最常說的勵志金句..." onChange={(e) => handleInputChange("golden_quote", e.target.value)} />
+                    <textarea value={formData.golden_quote} placeholder="寫下最常說的勵志金句..." onChange={(e) => handleInputChange("golden_quote", e.target.value)} />
                 </FormField>
             </FormSection>
 
             <FormSection2 title="影像回顧" subtitle="*檔案上傳最高上限為50MB" gallery={formData.gallery} handleFileChange={handleFileChange}>
                 <div className="form-field">
                     <div className="row-ver">
-                        {formData.gallery.map((image, index) => (
+                        {Array.from({ length: 3 }).map((_, index) => (
                             <div key={index} className="upload-container">
                                 <label className="upload-cover">
                                     <input
@@ -164,8 +196,8 @@ export default function Form1({ onChange=() => {}, setPopup }) {
                                         accept="image/*"
                                         onChange={(e) => handleFileChange(index, e.target.files[0])}
                                     />
-                                    {image ? (
-                                        <img src={image} alt={`Upload ${index + 1}`} className="uploaded-image" />
+                                    {formData.gallery[index] ? (
+                                        <img src={formData.gallery[index].image} alt={`Upload ${index + 1}`} className="uploaded-image" />
                                     ) : (
                                         <span className="upload-icon">+</span>
                                     )}

@@ -39,6 +39,7 @@ model Morgue {
   life_story    String
   gallery       Gallery[]
   prompt        Prompt[]
+  is_draft       Boolean @default(true)
 }
 model Prompt {
   id        String   @id @default(cuid())
