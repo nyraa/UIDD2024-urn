@@ -46,6 +46,30 @@ export default function Form1({ onChange=() => {}, setPopup, formData, setFormDa
                 console.error("Error fetching draft morgue:", error);
         });
     }, []);
+
+    // useEffect(() => {
+    //     //console.log("formData:", formData);
+    // }, [formData]);
+
+    async function handleGalleryUpload(file)
+    {
+        const uploadFormData = new FormData();
+        uploadFormData.append("file", file);
+        uploadFormData.append("id", formData.id);
+        console.log("Upload to morgue id:", formData.id);
+        console.log("Gallery file:", file);
+        const response = await fetch("/api/upload_gallery", {
+            method: "POST",
+            body: uploadFormData
+        });
+        if (!response.ok) {
+            console.error("Error uploading gallery image:", response.statusText);
+            return;
+        }
+        const data = await response.json();
+        console.log("Gallery upload response:", data);
+        return data;
+    }
     
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -53,12 +77,19 @@ export default function Form1({ onChange=() => {}, setPopup, formData, setFormDa
     };
 
     const handleFileChange = (index, file) => {
-        const newGallery = formData.gallery;
-        newGallery[index] = newGallery[index] ?? {};
-        newGallery[index].image = URL.createObjectURL(file);
-        setFormData({ ...formData, gallery: newGallery });
-        onChange("gallery", newGallery);
-        console.log("Updated gallery:", newGallery); // 日誌輸出檢查
+        if(!file)
+        {
+            return;
+        }
+        handleGalleryUpload(file).then((data) => {
+            console.log("Gallery upload response:", data);
+            const newGallery = formData.gallery;
+            // newGallery[index] = newGallery[index] ?? {};
+            newGallery[index] = data;
+            setFormData({ ...formData, gallery: newGallery });
+            onChange("gallery", newGallery);
+            console.log("Updated gallery:", newGallery); // 日誌輸出檢查
+        });
     };
       
     const handleButtonClick = () => {

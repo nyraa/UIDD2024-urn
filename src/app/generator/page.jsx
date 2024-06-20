@@ -28,7 +28,7 @@ export default function GeneratorPage() {
         death_calendar: "solar",
         last_live_city: "",
         life_story: "",
-        gallery: [null, null, null],
+        gallery: [],
         is_draft: true
     });
 
