@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Urn from "@app/components/Urn";
 import Button from "@app/components/Button";
 
-export default function Form2({ onChange=() => {}}) {
+export default function Form2({ onChange=() => {}, formData, setFormData }) {
     const [prompt, setPrompt] = useState("");
     const [select, setSelect] = useState(0);
     const [textureSrc, setTextureSrc] = useState("");
@@ -34,7 +34,9 @@ export default function Form2({ onChange=() => {}}) {
             })
         }).then((res) => res.json()).then((data) => {
             console.log(data);
-            setTextureSrc("/api/image_proxy?path=" + data.images[0]);
+            const img_path = "/api/image_proxy?path=" + data.images[0];
+            setTextureSrc(img_path);
+            setFormData({ ...formData, urn_texture_src: img_path });
             setGeneratePending(false);
         }).catch((e) => {
             console.error(e);
@@ -43,6 +45,7 @@ export default function Form2({ onChange=() => {}}) {
     }
     useEffect(() => {
         console.log(select);
+        setFormData({ ...formData, urn_index: select });
     }, [select]);
     return (
         <form className="form" onSubmit={(e) => e.preventDefault()}>

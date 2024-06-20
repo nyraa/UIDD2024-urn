@@ -89,8 +89,8 @@ export default function GeneratorPage() {
             <div className={`generator ${stage >= 1 && stage <= 2 ? "wave-bg" : ""}`}>
                 <Header stage={stage} setStage={setStage} />
                 {stage == 1 && <Form1 setPopup={setPopup} formData={formData} setFormData={setFormData} handleUpload={handleUpload} />}
-                {stage == 2 && <Form2 />}
-                {stage > 0 && <Navigation stage={stage} setStage={setStage} />}
+                {stage == 2 && <Form2 formData={formData} setFormData={setFormData} />}
+                {stage > 0 && <Navigation stage={stage} setStage={setStage} handleUpload={handleUpload} />}
             </div>
             {popup && <PopupHelper setPopup={setPopup} />}
         </>
@@ -163,18 +163,11 @@ function Stage({ stage, targetStage }) {
     );
 }
 
-function Navigation({ stage, setStage }) {
-    const handleSave = () => {
-        // 獲取表單並提交
-        const form = document.querySelector('form');
-        if (form) {
-          form.requestSubmit(); // 使用 requestSubmit() 提交表單
-        }
-      };
+function Navigation({ stage, setStage, handleUpload }) {
     return (
         <div className="navigation">
             <button className="prev" onClick={() => setStage(stage - 1)}><FontAwesomeIcon icon={faArrowLeft} />　上一步</button>
-            <button className="save" onClick={handleSave}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
+            <button className="save" onClick={handleUpload}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
             <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );
