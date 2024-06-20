@@ -9,27 +9,7 @@ import { Effects } from "@react-three/drei";
 const prisma = new PrismaClient();
 
 
-export default function Form1({ onChange=() => {}, setPopup }) {
-    const debug_owner_id = "clxnhadhu0000i8gftwklh8xw";
-    const [formData, setFormData] = useState({
-        id:"",
-        ownerId: debug_owner_id, // 假設已經有用戶的 ID
-        golden_quote: "",
-        cover_src: "",
-        urn_index: 0,
-        urn_texture_src: "",
-        name: "",
-        title: "",
-        born_date: "",
-        born_calendar: "solar",
-        death_date: "",
-        death_calendar: "solar",
-        last_live_city: "",
-        life_story: "",
-        gallery: [null, null, null],
-        is_draft: true
-    });
-
+export default function Form1({ onChange=() => {}, setPopup, formData, setFormData, handleUpload }) {
     const [showPopup, setShowPopup] = useState(false);
     useEffect(() => {
         fetch("/api/get_draft_morgue", {
@@ -38,7 +18,7 @@ export default function Form1({ onChange=() => {}, setPopup }) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                ownerId: debug_owner_id
+                ownerId: formData.ownerId
             })
         }).then((res) => {
             if(!res.ok)
@@ -47,7 +27,7 @@ export default function Form1({ onChange=() => {}, setPopup }) {
                 {
                     console.log("No draft morgue found.");
                     // create one
-                    handleSubmit();
+                    handleUpload();
                 }
             }
             else
@@ -90,41 +70,7 @@ export default function Form1({ onChange=() => {}, setPopup }) {
 
     const handleSubmit = async (e) => {
         e?.preventDefault?.();
-        console.log("Form Data on Submit:", formData); // 在提交時輸出 
-        // 確保日期字段是有效的 Date 對象
-        const formDataWithValidDates = {
-            ...formData,
-            born_date: formData.born_date, // 保持字符串格式
-            born_calendar: formData.born_calendar,
-            death_date: formData.death_date, // 保持字符串格式
-            death_calendar: formData.death_calendar,
-            gallery: formData.gallery.filter(image => image !== null) // 過濾掉 null 值
-        };
-            console.log("Form Data with Valid Dates:", formDataWithValidDates);
-
-
-        try {
-            const response = await fetch('/api/generator_data', {
-                method: formData.id === "" ?'POST':'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formDataWithValidDates)
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                setFormData({ ...formData, id: result.id });
-                console.log('Data saved successfully');
-            } else {
-                const errorText = await response.text();
-                console.log('Failed to save data');
-                console.log('Response Status:', response.status);
-                console.log('Response Text:', errorText);
-            }
-        } catch (error) {
-            console.error('An error occurred while saving data', error);
-        }
+        handleUpload();
     };
 
 
