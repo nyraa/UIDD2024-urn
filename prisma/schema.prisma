@@ -32,11 +32,33 @@ model Morgue {
   name          String
   title         String
   born_date     String  // iso 8601
+  born_calendar String  // iso 8601
   death_date    String
+  death_calendar String
   last_live_city String
   life_story    String
   gallery       Gallery[]
-  is_draft      Boolean
+  prompt        Prompt[]
+  is_draft       Boolean @default(true)
+}
+model Prompt {
+  id        String   @id @default(cuid())
+  promptId   String
+  prompter   Morgue   @relation(fields: [promptId], references: [id])
+  death_story String
+  person_features String
+  memorial_activity String
+  alive_family String
+  dead_family String
+  elementary_school String
+  middle_school String
+  high_school String
+  college String
+  graduate String
+  career   String
+  hobby    String
+  volunteer String
+  religion String
 }
 
 model Gallery {
@@ -44,11 +66,4 @@ model Gallery {
   morgueId  String
   morgue    Morgue   @relation(fields: [morgueId], references: [id])
   image     String
-}
-
-model Urn {
-  id     String @id @default(cuid())
-  link   String
-  person String
-  urn    String
 }

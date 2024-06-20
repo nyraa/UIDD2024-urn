@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import "./generator.sass"
 import Nav from "@app/components/Nav"
@@ -11,29 +10,75 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight, faDownload } from "@fortawesome/free-solid-svg-icons";
 
 export default function GeneratorPage() {
+    const debug_owner_id = "clxnhadhu0000i8gftwklh8xw";
     const [stage, setStage] = useState(0);
     const [popup, setPopup] = useState(false);
-    let morgue = {};
-    function onChange(key, value) {
-        morgue[key] = value;
-    }
+    const [formData, setFormData] = useState({
+        id:"",
+        ownerId: debug_owner_id, // 假設已經有用戶的 ID
+        golden_quote: "",
+        cover_src: "",
+        urn_index: 0,
+        urn_texture_src: "",
+        name: "",
+        title: "",
+        born_date: "",
+        born_calendar: "solar",
+        death_date: "",
+        death_calendar: "solar",
+        last_live_city: "",
+        life_story: "",
+        gallery: [],
+        is_draft: true
+    });
 
-    function save_urn() {
-        fetch("/api/save_urn", {
-            method: "POST",
-            body: JSON.stringify({ data: morgue }),
-            headers: {
-                "Content-Type": "application/json"
+    async function handleUpload()
+    {
+        console.log("Form Data on Submit:", formData); // 在提交時輸出 
+        // 確保日期字段是有效的 Date 對象
+        const formDataWithValidDates = {
+            ...formData,
+            born_date: formData.born_date, // 保持字符串格式
+            born_calendar: formData.born_calendar,
+            death_date: formData.death_date, // 保持字符串格式
+            death_calendar: formData.death_calendar,
+            gallery: formData.gallery.filter(image => image !== null) // 過濾掉 null 值
+        };
+            console.log("Form Data with Valid Dates:", formDataWithValidDates);
+
+
+        try {
+            const response = await fetch('/api/generator_data', {
+                method: formData.id === "" ?'POST':'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataWithValidDates)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                setFormData({ ...formData, id: result.id });
+                console.log('Data saved successfully');
+            } else {
+                const errorText = await response.text();
+                console.log('Failed to save data');
+                console.log('Response Status:', response.status);
+                console.log('Response Text:', errorText);
             }
-        }).then((res) => res.json()).then((data) => {
-            morgue = data;
-        });
+        } catch (error) {
+            console.error('An error occurred while saving data', error);
+        }
     }
 
     useEffect(() => {
         if(stage >= 4)
         {
-            save_urn();
+            // upload
+            formData.is_draft = false;
+            handleUpload().then(() => {
+                window.location.href = `/urn/${formData.id}`;
+            });
         }
     }, [stage]);
 
@@ -42,7 +87,7 @@ export default function GeneratorPage() {
             <Nav title={true} />
             <div className={`generator ${stage >= 1 && stage <= 2 ? "wave-bg" : ""}`}>
                 <Header stage={stage} setStage={setStage} />
-                {stage == 1 && <Form1 setPopup={setPopup} onChange={onChange} />}
+                {stage == 1 && <Form1 setPopup={setPopup} formData={formData} setFormData={setFormData} handleUpload={handleUpload} />}
                 {stage == 2 && <Form2 />}
                 {stage > 0 && <Navigation stage={stage} setStage={setStage} saveDraft={save_urn}/>}
             </div>
@@ -117,12 +162,19 @@ function Stage({ stage, targetStage }) {
     );
 }
 
-function Navigation({ stage, setStage, saveDraft }) {
+function Navigation({ stage, setStage }) {
+    const handleSave = () => {
+        // 獲取表單並提交
+        const form = document.querySelector('form');
+        if (form) {
+          form.requestSubmit(); // 使用 requestSubmit() 提交表單
+        }
+      };
     return (
         <div className="navigation">
             <button className="prev" onClick={() => setStage(stage - 1)}><FontAwesomeIcon icon={faArrowLeft} />　上一步</button>
-            <button className="save" onClick={saveDraft}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
-            <button className="next" onClick={() => setStage(stage + 1)}>{stage >= 4 ? "送出" : "下一步"}　<FontAwesomeIcon icon={faArrowRight} /></button>
+            <button className="save" onClick={handleSave}><FontAwesomeIcon icon={faDownload} />　儲存草稿</button>
+            <button className="next" onClick={() => setStage(stage + 1)}>下一步　<FontAwesomeIcon icon={faArrowRight} /></button>
         </div>
     );
 }

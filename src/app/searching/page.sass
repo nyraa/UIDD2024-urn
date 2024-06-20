@@ -1,0 +1,40 @@
+.die-today
+    width: 100%
+    padding: 100px 100px
+    box-sizing: border-box
+    display: flex
+    justify-content: space-between
+    overflow: hidden
+
+    .person
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 30%
+        height: 100%
+        position: relative
+
+        &::after
+            content: ""
+            position: absolute
+            bottom: 0
+            width: 696px
+            height: 157px
+            background-image: url("/assets/fog.png")
+            z-index: 0
+
+        .picture
+            width: 100%
+        
+        
+        .urn
+            width: 50%
+            transition: all 0.3s ease
+            position: relative
+            top: -120px
+            z-index: 1
+            &:hover
+                transform: scale(1.5)
+.block
+    position: relative
+    top :20vh
