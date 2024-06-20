@@ -35,13 +35,25 @@ export default function Urn({ objIndex, textureSrc })
 {
     const meshRef = useRef();
     const obj = useLoader(OBJLoader, urns[objIndex].objSrc);
-    const texture = useLoader(TextureLoader, textureSrc);
-    obj.traverse((child) => {
-        if(child.isMesh)
-        {
-            child.material = new THREE.MeshStandardMaterial({map: texture});
-        }
-    });
+    if(textureSrc !== undefined)
+    {
+        const texture = useLoader(TextureLoader, textureSrc);
+        obj.traverse((child) => {
+            if(child.isMesh)
+            {
+                child.material = new THREE.MeshStandardMaterial({map: texture});
+            }
+        });
+    }
+    else
+    {
+        obj.traverse((child) => {
+            if(child.isMesh)
+            {
+                child.material = new THREE.MeshStandardMaterial({color: 0xc0c0c0});
+            }
+        });
+    }
     const [ hover, setHover ] = useState(false);
     return (
         <div className="urn-3d">
@@ -50,6 +62,8 @@ export default function Urn({ objIndex, textureSrc })
                 onPointerOut={() => setHover(false)}
             >
                 <ambientLight intensity={Math.PI / 2} />
+                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
+                <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
                 <mesh
                     ref={meshRef}
                     scale={1}>
