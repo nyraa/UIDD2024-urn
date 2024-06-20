@@ -14,6 +14,7 @@ export default function SearchPage() {
   const [urnData, setUrnData] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [initialData, setInitialData] = useState([]);
+  const [audio, setAudio] = useState(null);
 
   useEffect(() => {
     fetchInitialData();
@@ -22,7 +23,7 @@ export default function SearchPage() {
   const fetchInitialData = async () => {
     try {
       const response = await axios.get('/api/search');
-      setInitialData(response.data);
+      setInitialData(response.data.urns);
     } catch (error) {
       console.error('Error fetching initial URN data:', error);
     }
@@ -33,11 +34,22 @@ export default function SearchPage() {
       const response = await axios.get('/api/search', {
         params: { query: searchValue },
       });
-      setUrnData(response.data);
+      setUrnData(response.data.urns);
+      if (response.data.playAudio && response.data.audioFile) {
+        setAudio(new Audio(response.data.audioFile));
+      } else {
+        setAudio(null);
+      }
     } catch (error) {
       console.error('Error fetching URN data:', error);
     }
   };
+
+  useEffect(() => {
+    if (audio) {
+      audio.play();
+    }
+  }, [audio]);
 
   const handleSearch = (searchValue) => {
     setHasSearched(true);
@@ -87,31 +99,21 @@ function SearchBar({ onSearch }) {
       </div>
       <div className="tags-container">
         <div className="selected-tags">
-          <button className="tag" onClick={() => handleTagClick('王希銘')}>王希銘</button>
-          <button className="tag" onClick={() => handleTagClick('標籤2')}>標籤2</button>
-          <button className="tag" onClick={() => handleTagClick('標籤3')}>標籤3</button>
+          <button className="tag" onClick={() => handleTagClick('豬哥亮')}>豬哥亮</button>
+          <button className="tag" onClick={() => handleTagClick('鄧麗君')}>鄧麗君</button>
+          <button className="tag" onClick={() => handleTagClick('mygo')}>mygo</button>
         </div>
         <div className={`expandable-tags ${isExpanded ? 'expanded' : ''}`}>
           <div className="popular-tags">
             <span className="title">熱門 TOP 5</span>
             <div className="tags">
-              <button className="tag" onClick={() => handleTagClick('熱門標籤1')}>熱門標籤1</button>
-              <button className="tag" onClick={() => handleTagClick('熱門標籤2')}>熱門標籤2</button>
-              <button className="tag" onClick={() => handleTagClick('熱門標籤3')}>熱門標籤3</button>
-              <button className="tag" onClick={() => handleTagClick('熱門標籤4')}>熱門標籤4</button>
-              <button className="tag" onClick={() => handleTagClick('熱門標籤5')}>熱門標籤5</button>
+              <button className="tag" onClick={() => handleTagClick('豬哥亮')}>豬哥亮</button>
+              <button className="tag" onClick={() => handleTagClick('鄧麗君')}>鄧麗君</button>
+              <button className="tag" onClick={() => handleTagClick('台南')}>台南</button>
+              <button className="tag" onClick={() => handleTagClick('王希銘')}>王希銘</button>
+              <button className="tag" onClick={() => handleTagClick('桃園')}>桃園</button>
             </div>
-          </div>
-          <div className="all-tags">
-            
-            <div className="tags">
-              <button className="tag" onClick={() => handleTagClick('標籤1')}>標籤1</button>
-              <button className="tag" onClick={() => handleTagClick('標籤2')}>標籤2</button>
-              <button className="tag" onClick={() => handleTagClick('標籤3')}>標籤3</button>
-              <button className="tag" onClick={() => handleTagClick('標籤4')}>標籤4</button>
-              <button className="tag" onClick={() => handleTagClick('標籤5')}>標籤5</button>
-            </div>
-          </div>
+          </div>         
         </div>
         <button className="expand-button" onClick={toggleExpand}>
           {isExpanded ? '⬆' : '⬇'}
@@ -130,7 +132,7 @@ function Search({ urnData, hasSearched }) {
     return (
       <section className="search">
         <Splitter className="search-result">搜尋結果</Splitter>
-        <div className="search-results">未找到匹配的結果</div>
+        <div className="search-no-results">未找到匹配的結果</div>
       </section>
     );
   }
@@ -140,7 +142,7 @@ function Search({ urnData, hasSearched }) {
       <Splitter className="search-result">搜尋結果</Splitter>
       <div className="search-results">
         {urnData.map((item, i) => (
-          <Avatar className="search-person" key={i} src={item.cover_src} src1={item.urn_texture_src} href="#" />
+          <Avatar className="search-person" key={i} src={item.cover_src} src1={item.urn_texture_src} href={`/urn/${item.id}`} />
         ))}
       </div>
     </section>
@@ -152,24 +154,51 @@ function Block({ urnData }) {
     <section className="block">
       <div className="block1">
         <Splitter className="block-title">熱門搜尋</Splitter>
-        <DieToday urnData={urnData} />
+        <DieToday 
+          person1="assets/person1.png"
+          urn1="assets/urn.png" 
+          href1="#"
+          person2="assets/person2.png"
+          urn2="assets/urn.png" 
+          href2="#"
+          person3="assets/person3.png"
+          urn3="assets/urn.png" 
+          href3="#"
+        />
       </div>
       <div className="block2">
         <Splitter className="block-title">藝文娛樂</Splitter>
-        <DieToday urnData={urnData} />
+        <DieToday  
+          person1="assets/person1.png"
+          urn1="assets/urn.png" 
+          href1="#"
+          person2="assets/person2.png"
+          urn2="assets/urn.png" 
+          href2="#"
+          person3="assets/person3.png"
+          urn3="assets/urn.png" 
+          href3="#"
+        />
       </div>
       <div className="block3">
         <Splitter className="block-title">就在附近</Splitter>
-        <DieToday urnData={urnData} />
+        <DieToday  
+          person1="assets/person1.png"
+          urn1="assets/urn.png" 
+          href1="#"
+          person2="assets/person2.png"
+          urn2="assets/urn.png" 
+          href2="#"
+          person3="assets/person3.png"
+          urn3="assets/urn.png" 
+          href3="#" 
+        />
       </div>
     </section>
   );
 }
 
-function DieToday({ urnData }) {
-  if (!urnData || urnData.length === 0) {
-    return null;
-  }
+function DieToday({person1,urn1,href1,person2,urn2,href2,person3,urn3,href3}) {
 
   const settings = {
     dots: false,
@@ -183,9 +212,9 @@ function DieToday({ urnData }) {
   return (
     <section className="die-today">
       <Slider {...settings} className="slider-test">
-        {urnData.map((item, i) => (
-          <Avatar key={i} src={item.cover_src} src1={item.urn_texture_src} href="#" />
-        ))}
+        <Avatar src={person1} src1={urn1} href={href1} />
+        <Avatar src={person2} src1={urn2} href={href2} />
+        <Avatar src={person3} src1={urn3} href={href3} />
       </Slider>
     </section>
   );

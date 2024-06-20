@@ -25,6 +25,7 @@ export default async function handler(req, res) {
             ],
           },
           select: {
+            id: true,
             cover_src: true,
             urn_texture_src: true,
             name: true,
@@ -34,22 +35,15 @@ export default async function handler(req, res) {
             name: 'asc',
           },
         });
-      } else {
-        urns = await prisma.morgue.findMany({
-          select: {
-            cover_src: true,
-            urn_texture_src: true,
-            name: true,
-            last_live_city: true,
-          },
-          orderBy: {
-            name: 'asc',
-          },
-          take: 10, // 例如，只取前10条热门数据
-        });
+      } 
+
+      const response = { urns };
+      if (query === "春日影") {
+        response.playAudio = true;
+        response.audioFile = "https://tmpfiles.org/dl/8445493/mygo.mp4";
       }
 
-      res.status(200).json(urns);
+      res.status(200).json(response);
     } catch (error) {
       console.error('Error fetching URN data:', error);
       res.status(500).json({ error: 'Internal Server Error' });
