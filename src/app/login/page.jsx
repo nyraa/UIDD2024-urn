@@ -4,12 +4,49 @@ const prisma = new PrismaClient();
 import Nav from "@app/components/Nav";
 import "./page.sass";
 import { useState, useEffect } from 'react';
-
+import { useAuth } from "@app/context/AuthContext";
 export default function LoginPage() {
+    const {login} = useAuth();
+    
     const [isSignupVisible, setSignupVisible] = useState(false);
     const [isVerifyVisible, setVerifyVisible] = useState(false);
     const [email, setEmail] = useState("");
     const [userData, setUserData] = useState(null); // 用于存储用户数据
+    const [accountID, setAccountID] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [id, setId] = useState("");
+    const [error, setError] = useState("");
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch('/api/login1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ accountID, password }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to login');
+            }
+
+            const userData = await response.json();
+            console.log('User logged in successfully:', userData);
+            // 处理成功登录后的逻辑，例如跳转或更新用户界面等
+
+            // 返回上一页的逻辑，可以根据具体需要来实现
+            login(email, name, id);
+            window.history.back();
+
+
+        } catch (error) {
+            console.error('Error logging in:', error);
+            setError('登入時發生錯誤');
+        }
+    };
 
     const showSignup = () => setSignupVisible(true);
     const hideSignup = () => setSignupVisible(false);
@@ -23,6 +60,8 @@ export default function LoginPage() {
     const handleSignupComplete = (user) => {
         setUserData(user); // 设置用户数据
         setEmail(user.email); // 设置 email state
+        setName(user.name); // 设置 name state
+        setId(user.id); // 设置 id state
         hideSignup();
         showVerify();
     };
@@ -31,9 +70,14 @@ export default function LoginPage() {
         <>
             <Nav />
             <Back />
-            <Input />
+            <Input 
+                accountID={accountID} 
+                setAccountID={setAccountID} 
+                password={password} 
+                setPassword={setPassword} 
+            />
             <Remember />
-            <Account title="登入" title2="建立新帳號" showSignup={showSignup} />
+            <Account title="登入" title2="建立新帳號" showSignup={showSignup} handleLogin={handleLogin} />
             <Quick_login title1="以Apple帳號登入" title2="以FACEBOOK帳號登入" title3="以Google帳號登入" />
             {isSignupVisible && <Signup hideSignup={hideSignup} handleSignupComplete={handleSignupComplete} />}
             {isVerifyVisible && <Verify hideVerify={hideVerify} email={email} userData={userData} />}
@@ -57,11 +101,23 @@ function Titlelink({ title, href }) {
     );
 }
 
-function Input() {
+function Input({ accountID, setAccountID, password, setPassword }) {
     return (
         <section className="login-text">
-            <input type="text" className="account-id" placeholder="電子郵件/手機號碼" />
-            <input type="password" className="password" placeholder="密碼" />
+            <input 
+                type="text" 
+                className="account-id" 
+                placeholder="電子郵件/手機號碼" 
+                value={accountID}
+                onChange={(e) => setAccountID(e.target.value)}
+            />
+            <input 
+                type="password" 
+                className="password" 
+                placeholder="密碼" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
         </section>
     );
 }
@@ -84,10 +140,10 @@ function Forget({ title, href }) {
     );
 }
 
-function Account({ title, title2, showSignup }) {
+function Account({ title, title2, showSignup, handleLogin }) {
     return (
         <section className="account">
-            <button className="login">{title}</button>
+            <button className="login" onClick={handleLogin}>{title}</button>
             <div className="line1"></div>
             <button className="signup" id="signup" onClick={showSignup}>{title2}</button>
         </section>
