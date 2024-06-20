@@ -9,7 +9,7 @@ export default function Form1({ onChange=() => {}, setPopup }) {
     const [showPopup, setShowPopup] = useState(false);
       
     const handleButtonClick = () => {
-      setShowPopup(true);
+        setShowPopup(true);
     };
     const closePopup = () => {
         setShowPopup(false);
@@ -69,19 +69,19 @@ export default function Form1({ onChange=() => {}, setPopup }) {
                 <FormField2 column="1-3">    
                     <label className="upload_cover">
                     <input className="upload-btn" type="file" accept="image/*" onChange={(e) => onChange("image", e.target.files[0])} />
-                    <span class="upload_icon">+</span>
+                    <span className="upload_icon">+</span>
                     </label>
                 </FormField2>
                 <FormField2 column="1-3">
                     <label className="upload_cover">
                     <input className="upload-btn" type="file" accept="image/*" onChange={(e) => onChange("image", e.target.files[0])} />
-                    <span class="upload_icon">+</span>
+                    <span className="upload_icon">+</span>
                     </label>
                 </FormField2> 
                 <FormField2 column="1-3">
                     <label className="upload_cover">
                     <input className="upload-btn" type="file" accept="image/*" onChange={(e) => onChange("image", e.target.files[0])} />
-                    <span class="upload_icon">+</span>
+                    <span className="upload_icon">+</span>
                     </label>
                 </FormField2>         
             </FormSection2>
