@@ -142,7 +142,7 @@ function Search({ urnData, hasSearched }) {
       <Splitter className="search-result">搜尋結果</Splitter>
       <div className="search-results">
         {urnData.map((item, i) => (
-          <Avatar className="search-person" key={i} src={item.cover_src} src1={item.urn_texture_src} href={`/urn/${item.id}`} />
+          <Avatar className="search-person" key={i} src={item.gallery?.[0]?.image} src1={item.urn_texture_src} href={`/urn/${item.id}`} />
         ))}
       </div>
     </section>

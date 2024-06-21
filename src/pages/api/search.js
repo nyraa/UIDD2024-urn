@@ -30,6 +30,7 @@ export default async function handler(req, res) {
             urn_texture_src: true,
             name: true,
             last_live_city: true,
+            gallery: true,
           },
           orderBy: {
             name: 'asc',
