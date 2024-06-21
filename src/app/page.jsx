@@ -59,10 +59,6 @@ function ActionLink({ title, line1, line2, href }) {
 function CategorySection() {
     return (
         <section className="category-section">
-            <Category name="年齡" href="/searching" />
-            <Category name="地區" href="/searching" />
-            <Category name="史事" href="/searching" />
-            <MoreCategory name="更多類別" href="/searching" />
             <Category name="年齡" href="/search" />
             <Category name="地區" href="/search" />
             <Category name="史事" href="/search" />
