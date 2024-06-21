@@ -46,13 +46,13 @@ export default  function Finalpage({ params }) {
         <>
             <Nav title={true} />
             <Background />
-            <Goldenword children={data}/>
+            <Goldenword props={data}/>
             <Morgueitems/>     
-            <Photoshot children={data} data={data}/>
-            <Name children={data}/>
-            <About children={data}/>
+            <Photoshot props={data} data={data}/>
+            <Name props={data}/>
+            <About props={data}/>
             <Slidepicture galleries={data?.gallery}/>
-            <Story children={data}/>
+            <Story props={data}/>
             <AIchat/>
         </>
     );
@@ -102,10 +102,10 @@ function Background(){
   );
 }
 
-function Photoshot({children, data}){
+function Photoshot({props, data}){
   return(
     <section className="photoshot">
-    <Mainphoto picturedata={children}/>
+    <Mainphoto picturedata={props}/>
     <Bonebox data={data}/>
     
     </section>
@@ -316,9 +316,9 @@ function Music({musictrigger}){
   );
 }
 
-function Goldenword({children}){
+function Goldenword({props}){
     return(
-        <div className = "goldenword"><p>{children ? children.golden_quote : 'Loading...'}</p></div>
+        <div className = "goldenword"><p>{props ? props.golden_quote : 'Loading...'}</p></div>
     );
 };
 function formatYear(isoDate) {
@@ -330,13 +330,13 @@ function formatYear(isoDate) {
   return `${year}`;
 }
 
-function Name({children}){
+function Name({props}){
 
     return(
         <section className="name" >
-          <p className="n1">{children ? children.name : 'Loading...'}</p>
-          <p className="n2">{children ? children.title : 'Loading...'}</p>
-          <p className="n2">{formatYear(children?.born_date)} - {formatYear(children?.death_date)}</p>
+          <p className="n1">{props ? props.name : 'Loading...'}</p>
+          <p className="n2">{props ? props.title : 'Loading...'}</p>
+          <p className="n2">{formatYear(props?.born_date)} - {formatYear(props?.death_date)}</p>
           <Share/>
         </section>
     );
@@ -355,7 +355,7 @@ return(
 </>
 );
 }
- function LittleSplitter({ children }) {
+ function LittleSplitter({ props: children }) {
   return (
       <div className="littlesplitter">
           {children}
@@ -371,24 +371,24 @@ function formatDate(isoDate) {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year} 年 ${month} 月 ${day} 日`;
 }
-function About ({children}){
+function About ({props}){
 
   return(
     <section className="detail"  >
       <p id="d2">逝世</p>
-      <p id="d1">{formatDate(children?.born_date)}</p>
+      <p id="d1">{formatDate(props?.born_date)}</p>
       <p id="d2">死亡詳情</p>
-      <p id="d1">{children ? children.last_live_city : 'Loading...'}</p>
+      <p id="d1">{props ? props.last_live_city : 'Loading...'}</p>
     </section>
   );
 };
 
-function Story({children}){
+function Story({props}){
   return(
     <section className="mainstory" >
         <div className="s1"> 生命故事</div>
         <div className="s2">
-        {children ? children.life_story : 'Loading...'}
+        {props ? props.life_story : 'Loading...'}
         </div>
     </section>
   );

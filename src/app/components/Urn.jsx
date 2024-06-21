@@ -35,13 +35,13 @@ export default function Urn({ objIndex, textureSrc, enableRotate = true, preview
 {
     const meshRef = useRef();
     let obj = useLoader(OBJLoader, urns[objIndex].objSrc).clone();
+    const texture = useLoader(TextureLoader, textureSrc);
     try
     {
         if(!textureSrc)
         {
             throw new Error("No texture");
         }
-        const texture = useLoader(TextureLoader, textureSrc);
         console.log("texture updated");
         obj.traverse((child) => {
             if(child.isMesh)

@@ -57,7 +57,7 @@ export default function Finalpage() {
     return (
         <>
             <Nav title={true} />
-            <Background children={positions}/>
+            <Background props={positions}/>
             <Goldenword/>            
             <Photoshot />
             <Name/>
@@ -68,12 +68,12 @@ export default function Finalpage() {
     );
 
 };
-function Background({children}){
+function Background({props}){
   return(
     <section className="backgrounds">
       <img className="back1" src="./picture/background.png"/>  
-      <img className="back2" style={{ top: children.back2 }} src="./picture/Rectangle 110.png"/>
-      <img className="mountain" style={{ top: children.mountain }} src="./picture/Mountain.png"/>
+      <img className="back2" style={{ top: props.back2 }} src="./picture/Rectangle 110.png"/>
+      <img className="mountain" style={{ top: props.mountain }} src="./picture/Mountain.png"/>
       <div className="back3"></div>
       <img className="cloud" src="./picture/cloud.png"/>
     </section>
@@ -188,8 +188,8 @@ function Slidepicture(){
   return (
     <div className="slidepicture">
       <Slider {...settings}>
-        {movies.map((movie) => (
-          <div className="wrap">
+        {movies.map((movie, i) => (
+          <div key={i} className="wrap">
             <img src={movie.url} />
           </div>
         ))}
