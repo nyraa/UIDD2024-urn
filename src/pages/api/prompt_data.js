@@ -7,6 +7,7 @@ export default async function handler(req, res) {
             const data = req.body;
             // console.log('Received POST data:', data); // 日誌輸出接收到的數據
 
+            console.log(data.promptId);
             const result = await prisma.prompt.create({
                 data: {
                     promptId: data.promptId,

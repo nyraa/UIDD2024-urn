@@ -27,6 +27,7 @@ export default function PopupHelper({ showPopup, setShowPopup, morgueid }) {
         volunteer: "",
         religion: ""
     });
+    
 
     useEffect(() => {
         if (showPopup) {
@@ -62,6 +63,20 @@ export default function PopupHelper({ showPopup, setShowPopup, morgueid }) {
                 setFormData({ ...formData, id: result.id });
                 console.log({ ...formData, id: result.id });
                 console.log(formData);
+                console.log(formData.death_story===""?"":"死因:"+ formData.death_story)
+                console.log(formData.person_features===""?"":"特點:"+ formData.person_features)
+                console.log(formData.memorial_activity===""?"":"悼念活動:"+ formData.memorial_activity)
+                console.log(formData.alive_family===""?"":"親愛的在世家人:"+ formData.alive_family) 
+                console.log(formData.dead_family===""?"":"親愛的已逝家人:"+ formData.dead_family)
+                console.log(formData.elementary_school===""?"":"小學:"+ formData.elementary_school)
+                console.log(formData.middle_school===""?"":"國中:"+ formData.middle_school)
+                console.log(formData.high_school===""?"":"高中:"+ formData.high_school)
+                console.log(formData.college===""?"":"大學:"+ formData.college)
+                console.log(formData.graduate===""?"":"研究所:"+ formData.graduate)
+                console.log(formData.career===""?"":"職業生涯:"+ formData.career)
+                console.log(formData.hobby===""?"":"興趣愛好:"+ formData.hobby)
+                console.log(formData.volunteer===""?"":"志願服務:"+ formData.volunteer)
+                console.log(formData.religion===""?"":"宗教信仰:"+ formData.religion)
                 //setShowPopup(false);
             } else {
                 const errorText = await response.text();
